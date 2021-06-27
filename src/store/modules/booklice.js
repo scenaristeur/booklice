@@ -1,4 +1,5 @@
 const state = () => ({
+  notes: []
   // //pod
   // //  podStorage : null,
   //
@@ -19,6 +20,10 @@ const state = () => ({
 })
 
 const actions = {
+  add(context, n){
+    console.log("todo add to pod",n)
+    context.commit('add',n)
+  }
   // processMetaFile(context,file){
   //   try{
   //     let graph = JSON.parse(file.content)
@@ -32,6 +37,9 @@ const actions = {
 }
 
 const mutations = {
+  add(state, n){
+    state.notes.unshift(n)
+  }
   // setInput(state, i){
   //   state.input = i
   // },
