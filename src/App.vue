@@ -6,7 +6,7 @@
       <router-link to="/about">About</router-link>
     </div>
     <router-view/>
-    404-1
+    404-2
 
   </div>
 </template>

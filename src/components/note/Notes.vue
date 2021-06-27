@@ -2,6 +2,15 @@
   <b-container>
     N{{notes}}N
     <b-row>
+      <b-card style="max-width: 20rem;" v-for="n,i in notes" :key="i">
+        <b-card-title>t{{n.title}}T</b-card-title>
+        <b-card-text>
+          {{n.text}}
+        </b-card-text>
+        <footer>
+          <a :href="n.url" target="_blank">{{n.url}}</a>
+        </footer>
+      </b-card>
       <!-- <b-card-group columns> -->
       <b-card
       style="max-width: 20rem;"

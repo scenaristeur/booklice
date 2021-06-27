@@ -4,7 +4,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/booklice/404.html"
   },
   {
-    "revision": "d6c48e4f22c72658597e",
+    "revision": "12baac6cc5ee02e497f4",
     "url": "/booklice/css/app.5c9713c3.css"
   },
   {
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/booklice/css/chunk-vendors.590a9ee0.css"
   },
   {
-    "revision": "88cd61467bc791f5343e7a3812ec848d",
+    "revision": "217b6d7e9550eade404dfc1b3d178357",
     "url": "/booklice/index.html"
   },
   {
@@ -24,8 +24,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/booklice/js/about.229c6b90.js"
   },
   {
-    "revision": "d6c48e4f22c72658597e",
-    "url": "/booklice/js/app.3ef6b42c.js"
+    "revision": "12baac6cc5ee02e497f4",
+    "url": "/booklice/js/app.1b34b6df.js"
   },
   {
     "revision": "801055ddb733a30f4966",
@@ -44,8 +44,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/booklice/js/chunk-2d0d9fc1.262396c9.js"
   },
   {
-    "revision": "60283971baf62496a711",
-    "url": "/booklice/js/chunk-2d21ed65.f6639c9a.js"
+    "revision": "23ac0720a800d4b1b280",
+    "url": "/booklice/js/chunk-2d21ed65.80f8fdc7.js"
   },
   {
     "revision": "d7c708b79fd01e52cb1c",
