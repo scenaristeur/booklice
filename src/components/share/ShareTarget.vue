@@ -1,6 +1,6 @@
 <template>
   <div class="share container col">
-
+    Q{{ $route.query}}A
     <!-- <b-button v-b-modal.modal-bookmark>Bookmarks</b-button> -->
 
     <b-modal id="modal-bookmark" title="Bookmarks"
@@ -38,9 +38,9 @@
 
 <div class="container">
 
-  <p v-if="webId == null">
-    You need to <SolidLoginButton /> to your POD.
-  </p>
+  <!-- <p v-if="webId == null">
+    You need to <Log /> to your POD.
+  </p> -->
 
 
 
@@ -112,6 +112,9 @@ export default {
   }*/
 },
 watch: {
+  pod(){
+    this.webId = this.pod == null ? null : this.pod.webId
+  },
   '$route' (to) {
     //  '$route' (to, from) {
     this.title = to.query.title
@@ -175,8 +178,8 @@ computed:{
   path(){
     return this.storage != null ? [this.storage.slice(0,-1), this.selected, "bookmarks", this.topic+"/bookmarks.ttl"].join("/") : ""
   },
-  webId(){
-    return this.$store.state.solid.pod.webId
+  pod(){
+    return this.$store.state.solid.pod
   },
   storage(){
     return this.$store.state.solid.storage

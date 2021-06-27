@@ -5,7 +5,10 @@
       <router-link to="/bookmarks">Bookmarks</router-link> |
       <router-link to="/about">About</router-link>
     </div>
+          Q{{ $route.query}}A
     <router-view/>
+    404
+
   </div>
 </template>
 

@@ -11,7 +11,7 @@ module.exports = {
   appleMobileWebAppStatusBarStyle: 'black',
   manifestOptions: {
     share_target: {
-      action: publicPath+'bookmarks',
+      action: publicPath,
       method: "GET",
       enctype: "application/x-www-form-urlencoded",
       params: {
