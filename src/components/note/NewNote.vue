@@ -53,7 +53,10 @@ export default {
       //  this.fullPath =  this.$route.fullPath
       this.note.title != undefined || this.note.text != undefined || this.note.url != undefined ? this.cardActive = true : ""
       //  console.log(this.$route)
-      // this.url == undefined ? this.url = this.text : ""
+      if(this.note.url == undefined && this.note.text.startsWith('http')){
+        this.note.url = this.note.text
+        this.note.text = ""
+      }
       // this.title == undefined ? this.title = "no-title" : ""
       this.topic == undefined ? this.topic = "default" : ""
     }
