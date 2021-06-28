@@ -237,7 +237,7 @@ const plugin = {
       n.url != undefined ? thing = addUrl(thing, AS.url, n.url ) : ""
 
       thing = addUrl(thing, AS.actor, store.state.solid.pod.webId );
-      thing = addStringNoLocale(thing, AS.published, date );
+      thing = addStringNoLocale(thing, AS.published, date.toISOString());
       let thingInDs = setThing(bm, thing);
 
 
