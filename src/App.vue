@@ -4,12 +4,32 @@
       <router-link to="/">Home</router-link> |
       <!-- <router-link to="/bookmarks">Bookmarks</router-link> | -->
       <router-link to="/about">About</router-link>
-          <Login />
+      <Login />
     </div>
     <router-view/>
-    --
 
-  </div>
+    <ul>
+      <li>Booklice te permet d'enregistrer tes liens favoris sur ton POD.</li>
+      <li>dans le dossier /public/bookmarks comme
+        <a href="https://spoggy-test13.solidcommunity.net/public/bookmarks/"
+        target="_blank">celui-ci</a>
+      </li>
+      <li>
+        te permettant ensuite de le partager avec le paramètre <b>?source=</b>
+      </li>
+      <li>
+        ce qui donne par exemple
+        <a href="https://scenaristeur.github.io/booklice?source=https://spoggy-test13.solidcommunity.net/public/bookmarks/"
+        target="_blank">
+        https://scenaristeur.github.io/booklice?source=https://spoggy-test13.solidcommunity.net/public/bookmarks/
+      </a>
+    </li>
+
+  </ul>
+
+  --
+
+</div>
 </template>
 
 
