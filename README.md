@@ -22,3 +22,7 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+# screenshot
+voir après thumb.io https://underconstructionpage.com/best-site-screenshot-api-services/#screenshots_table

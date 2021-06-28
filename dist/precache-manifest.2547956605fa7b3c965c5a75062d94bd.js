@@ -4,28 +4,24 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/booklice/404.html"
   },
   {
-    "revision": "fba7fd0d1739db89c29a",
+    "revision": "24997ccd448c21dee538",
     "url": "/booklice/css/app.5c9713c3.css"
-  },
-  {
-    "revision": "e024c62336bfe3e16564",
-    "url": "/booklice/css/chunk-7aaa0545.070538e6.css"
   },
   {
     "revision": "962680ca2c22461cca1e",
     "url": "/booklice/css/chunk-vendors.590a9ee0.css"
   },
   {
-    "revision": "1628b878e4829d0cad6056d81443e338",
+    "revision": "4c018e6b777db6c58f6b4d6a1adbf2ee",
     "url": "/booklice/index.html"
   },
   {
-    "revision": "6c4f79153b522fdb18df",
-    "url": "/booklice/js/about.229c6b90.js"
+    "revision": "7697ef9eb664b257a8e1",
+    "url": "/booklice/js/about.07b46504.js"
   },
   {
-    "revision": "fba7fd0d1739db89c29a",
-    "url": "/booklice/js/app.6b1d8f22.js"
+    "revision": "24997ccd448c21dee538",
+    "url": "/booklice/js/app.8f12d029.js"
   },
   {
     "revision": "38e8cd2640b6b55f8c96",
@@ -44,8 +40,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/booklice/js/chunk-2d0d9fc1.262396c9.js"
   },
   {
-    "revision": "d014b3830d1cedb8236e",
-    "url": "/booklice/js/chunk-2d21ecbc.4ecaeaee.js"
+    "revision": "3a30bc6c3ab4fdc73399",
+    "url": "/booklice/js/chunk-2d21ecbc.86487919.js"
   },
   {
     "revision": "d235a0f73e71e820657c",
@@ -54,10 +50,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "1502856fa5e368c84afa",
     "url": "/booklice/js/chunk-392ccdba.3b95e4a9.js"
-  },
-  {
-    "revision": "e024c62336bfe3e16564",
-    "url": "/booklice/js/chunk-7aaa0545.d79e945f.js"
   },
   {
     "revision": "07520820e8b83841005b",

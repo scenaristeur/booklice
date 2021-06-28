@@ -1,14 +1,15 @@
 <template>
   <div class="home">
+    <Login />
     <NewNote />
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <Login />
+
 
     <Notes />
 
-    <ShareTarget />
+    <!-- <ShareTarget /> -->
     <ShareButton />
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   </div>
 </template>
 
@@ -20,8 +21,8 @@ export default {
   name: 'Home',
   components: {
     'Login': () => import('@/components/solid/Login'),
-    'HelloWorld' : () => import('@/components/HelloWorld'),
-    'ShareTarget': () => import('@/components/share/ShareTarget'),
+    // 'HelloWorld' : () => import('@/components/HelloWorld'),
+    // 'ShareTarget': () => import('@/components/share/ShareTarget'),
     'NewNote': () => import('@/components/note/NewNote'),
     'Notes': () => import('@/components/note/Notes'),
     //  'BookmarksList': () => import('@/components/bookmarks/BookmarksList'),
