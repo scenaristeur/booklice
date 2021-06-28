@@ -9,7 +9,7 @@ import {
   createContainerAt,
   getSourceUrl,
   deleteFile,
-  deleteContainer,
+  //deleteContainer,
   addStringNoLocale,
   setThing,
   saveSolidDatasetAt,
@@ -385,29 +385,19 @@ const plugin = {
     },
 
 
-    Vue.prototype.$deleteOnPod = async function(url){
+    Vue.prototype.$delete = async function(n){
       try{
-        if(url.endsWith('/')){
-          await deleteContainer(
-            url, { fetch: sc.fetch }
-          );
-        }
-        else{
-          await deleteFile(
-            url, { fetch: sc.fetch }
-          );
-        }
-        console.log(" deleted !",url);
-        let parent = url.slice(0, url.lastIndexOf('/'))+'/';
-        console.log("parent",parent)
-        this.$setCurrentThingUrl(parent)
+        await deleteFile(
+          n.path, { fetch: sc.fetch }
+        );
+        console.log(" deleted !",n.path);
       } catch(e){
         alert(e)
       }
 
     }
 
-    // 
+    //
     // async function getResource(r){
     //   let dataset = await getSolidDataset(r, { fetch: sc.fetch });
     //   console.log(dataset)

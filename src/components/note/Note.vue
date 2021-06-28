@@ -20,10 +20,10 @@
     <!-- <h6 class="mb-0">Header Slot</h6> -->
     <b-button-toolbar key-nav aria-label="Toolbar with button groups">
       <b-button-group class="mx-1">
-        <b-button size="sm" variant="light">
+        <b-button size="sm" variant="light" @click="edit">
           <b-icon-pen></b-icon-pen>
         </b-button>
-        <b-button size="sm" variant="light">
+        <b-button size="sm" variant="light" @click="trash">
           <b-icon-trash></b-icon-trash>
         </b-button>
       </b-button-group>
@@ -67,7 +67,20 @@ export default {
 
   },
   methods: {
-
+    edit(){
+      alert("todo edit")
+    },
+    trash(){
+      var txt;
+      var r = confirm("Es-tu certain.e de vouloir supprimer ce booklice ? Tu ne pourras pas revenir en arrière !");
+      if (r == true) {
+        txt = "You pressed OK!";
+        this.$delete(this.n)
+      } else {
+        txt = "You pressed Cancel!";
+      }
+      console.log(txt)
+    }
     // mouseOver(){
     //
     //   this.active = !this.active;
