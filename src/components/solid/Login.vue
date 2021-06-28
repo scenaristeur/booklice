@@ -2,19 +2,20 @@
   <div>
 
     <div v-if="!isLoggedIn" class="d-flex align-items-center">
-      <b-form-select v-model="issuer" :options="issuers"></b-form-select>
-      <b-button  @click="login" :disabled="issuer == null" variant="success" size="sm">Login</b-button>
-    </div>
+      <b-form-group>
+        <b-form-select v-model="issuer" :options="issuers" @change="login"></b-form-select>
+        <!-- <b-button  @click="login" :disabled="issuer == null" variant="success" size="sm">Login</b-button> -->
+        <b-form-checkbox
+        id="checkbox-1"
+        v-model="restore"
+        name="checkbox-1"
+        >
+        restore session
+      </b-form-checkbox>
+    </b-form-group>
+  </div>
 
-    <div v-else class="d-flex align-items-center">
-      <b-form-checkbox
-      id="checkbox-1"
-      v-model="restore"
-      name="checkbox-1"
-      >
-      restore session on next time
-    </b-form-checkbox>
-
+  <div v-else class="d-flex align-items-center">
     <b-button @click="logout" variant="outline-danger" size="sm">Logout</b-button>
 
   </div>
@@ -28,7 +29,7 @@ export default {
   data() {
     return {
       issuers: [
-        { value: null, text: 'Please select an issuer', disabled: true},
+        { value: null, text: 'Selectionnez un fournisseur de Pod', disabled: true},
         { value: "https://broker.pod.inrupt.com", text: 'Broker Pod Inrupt (Entreprise Solid Server)' },
         { value: "https://inrupt.net", text: 'Inrupt.net' },
         { value: "https://solidcommunity.net", text: 'SolidCommunity.net' },

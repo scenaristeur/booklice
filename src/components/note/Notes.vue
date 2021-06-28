@@ -2,9 +2,10 @@
   <b-container>
     <!-- path : {{ path}}
     N{{notes}}N -->
+    <!-- {{bms}} -->
     <b-row>
 
-      <Note v-for="n,i in notes.slice().reverse()" :key="i" :note="n" />
+      <Note v-for="bm,i in bms.slice().reverse()" :key="i" :bm="bm" />
     </b-row>
     <!-- </b-card-group> -->
   </b-container>
@@ -16,27 +17,35 @@ export default {
   components: {
     'Note': () => import('@/components/note/Note'),
   },
+  data(){
+    return{
+      bms: []
+    }
+  },
+  created(){
+    if(this.$route.query.source != undefined){
+      this.path = this.$route.query.source
+    }
+  },
   watch:{
     async path(){
-      let bms = await this.$getResources(this.path)
-      console.log("bms",bms)
-      this.notes = bms
+      this.bms = await this.$getResources(this.path)
+      // console.log("bms",bms)
+      // this.notes = bms
     }
   },
   computed:{
-    notes:{
-      get() { return this.$store.state.booklice.notes},
-      set(notes) {this.$store.commit('booklice/setNotes', notes)}
-
+    // notes:{
+    //   get() { return this.$store.state.booklice.notes},
+    //   set(notes) {this.$store.commit('booklice/setNotes', notes)}
+    // },
+    path:{
+      get() { return this.$store.state.booklice.path},
+      set(path) {this.$store.commit('booklice/setPath', path)}    }
     },
-    path(){
-      return this.$store.state.booklice.path
-    }
+  }
+  </script>
 
-  },
-}
-</script>
+  <style>
 
-<style>
-
-</style>
+  </style>

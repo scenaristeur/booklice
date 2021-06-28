@@ -4,12 +4,27 @@
       <router-link to="/">Home</router-link> |
       <!-- <router-link to="/bookmarks">Bookmarks</router-link> | -->
       <router-link to="/about">About</router-link>
+          <Login />
     </div>
     <router-view/>
-    0-4
+    --
 
   </div>
 </template>
+
+
+<script>
+// @ is an alias to /src
+
+
+export default {
+  name: 'App',
+  components: {
+    'Login': () => import('@/components/solid/Login')
+  },
+}
+</script>
+
 
 <style>
 #app {

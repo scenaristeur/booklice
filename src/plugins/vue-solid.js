@@ -220,14 +220,32 @@ const plugin = {
 
       let resources = await getContainedResourceUrlAll(myDataset,{fetch: sc.fetch} )
       console.log("Resources", resources)
-      let res = []
-      for await (const r of resources) {
-        res.push(await getResource(r))
-      }
+      // let res = []
+      // for await (const r of resources) {
+      //   res.push(await getResource(r))
+      // }
 
       //  let res = resources.map(async function(x) {return await getResource(x)})
-      return res
+      return resources
     },
+
+
+
+    Vue.prototype.$getResource = async function(r){
+      let dataset = await getSolidDataset(r, { fetch: sc.fetch });
+      console.log(dataset)
+      let th = await getThingAll(dataset)
+      console.log('th',th)
+      let thing = th[0]
+      console.log(thing)
+      let title = await getStringNoLocale(thing, AS.name);
+      let text = await getStringNoLocale(thing, AS.content);
+      let url = await getUrl(thing, AS.url)
+      return {path: r, thing: thing, title: title, text: text, url: url}
+    },
+
+
+
 
     Vue.prototype.$addBookmark = async function(n){
       console.log(n)
@@ -389,19 +407,19 @@ const plugin = {
 
     }
 
-
-    async function getResource(r){
-      let dataset = await getSolidDataset(r, { fetch: sc.fetch });
-      console.log(dataset)
-      let th = await getThingAll(dataset)
-      console.log('th',th)
-      let thing = th[0]
-      console.log(thing)
-      let title = await getStringNoLocale(thing, AS.name);
-      let text = await getStringNoLocale(thing, AS.content);
-      let url = await getUrl(thing, AS.url)
-      return {path: r, thing: thing, title: title, text: text, url: url}
-    }
+    // 
+    // async function getResource(r){
+    //   let dataset = await getSolidDataset(r, { fetch: sc.fetch });
+    //   console.log(dataset)
+    //   let th = await getThingAll(dataset)
+    //   console.log('th',th)
+    //   let thing = th[0]
+    //   console.log(thing)
+    //   let title = await getStringNoLocale(thing, AS.name);
+    //   let text = await getStringNoLocale(thing, AS.content);
+    //   let url = await getUrl(thing, AS.url)
+    //   return {path: r, thing: thing, title: title, text: text, url: url}
+    // }
 
     // Vue.prototype.$subscribe = async function(resourceURL){
     //

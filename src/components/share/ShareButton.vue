@@ -28,7 +28,7 @@ export default {
   name: 'ShareButton',
   data: function () {
     return {
-      titleS: 'Popock',
+      titleS: 'Booklice',
       shareFeature: 'share' in window.navigator,
       query:  "",
       route: ""
@@ -39,8 +39,8 @@ export default {
       window.navigator
       .share({
         title: this.titleS,
-        text: 'Share PoPock',
-        url: window.location,
+        text: 'Share Booklice',
+        url: window.location.href,
       })
       .then(() => console.log('Successful share'))
       .catch(error => console.log('Error sharing', error));

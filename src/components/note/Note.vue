@@ -9,7 +9,7 @@
     {{n.text}}
 
   </b-card-text>
-  <footer>
+  <footer v-if="n.url != undefined && n.url!= null && n.url.length > 0">
     <a :href="n.url" target="_blank">{{n.url}}</a>
   </footer>
 
@@ -41,7 +41,7 @@
 </template>
 
 
-<b-card-img v-if="n.url.length > 0" :src="img_url"  width="20px" bottom></b-card-img>
+<b-card-img v-if="n.url != undefined && n.url!= null && n.url.length > 0" :src="img_url"  width="20px" bottom></b-card-img>
 
 
 </b-card>
@@ -50,7 +50,7 @@
 <script>
 export default {
   name: 'Note',
-  props: ['note'],
+  props: ['bm'],
   data(){
     return{
       n: {},
@@ -58,9 +58,13 @@ export default {
       img_url: ""
     }
   },
-  created(){
-    this.n = this.note
-    this.img_url = "http://image.thum.io/get/width/400/"+this.n.url
+  async created(){
+    this.n = await this.$getResource(this.bm)
+    console.log(this.n)
+    if (this.n.url != undefined && this.n.url != null && this.n.url.length > 0){
+      this.img_url = "http://image.thum.io/get/width/400/"+this.n.url
+    }
+
   },
   methods: {
 
