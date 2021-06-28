@@ -8,6 +8,7 @@
       ></b-form-input>
 
       <b-form-input
+      ref="text"
       v-model="note.text"
       placeholder="Créer une note"
       @click="inputFocus=true"
@@ -19,7 +20,7 @@
       v-model="note.url"
       placeholder="Url"
       ></b-form-input>
-      <b-button v-if="cardActive" size="sm" @click="cardActive=false">Fermer</b-button>
+      <b-button v-if="cardActive" size="sm" @click="add">Ajouter</b-button>
     </b-card>
   </b-container>
 </template>
@@ -45,43 +46,46 @@ export default {
       let n = this.note
       this.$store.dispatch('booklice/add', n)
       this.note = {}
+      this.cardActive = false
     },
     initForm(q){
       console.log("init",q)
       let n = {title: q.title,
-      text: q.text,
-      url: q.url}
-      //  this.query  = this.$route.query
-      //  this.params = this.$route.params
-      //  this.fullPath =  this.$route.fullPath
-      n.title != undefined || n.text != undefined || n.url != undefined ? this.cardActive = true : ""
-      //  console.log(this.$route)
-      if(n.url == undefined && n.text.startsWith('http')){
-        n.url = n.text
-        n.text = ""
+        text: q.text,
+        url: q.url}
+        //  this.query  = this.$route.query
+        //  this.params = this.$route.params
+        //  this.fullPath =  this.$route.fullPath
+        n.title != undefined || n.text != undefined || n.url != undefined ? this.cardActive = true : ""
+        //  console.log(this.$route)
+        if(n.url == undefined && n.text.startsWith('http')){
+          n.url = n.text
+          n.text = ""
+        }
+        this.note = n
+        console.log("note init",this.note)
+        // this.title == undefined ? this.title = "no-title" : ""
+        this.topic == undefined ? this.topic = "default" : ""
       }
-      this.note = n
-      console.log("note init",this.note)
-      // this.title == undefined ? this.title = "no-title" : ""
-      this.topic == undefined ? this.topic = "default" : ""
-    }
-  },
-  watch:{
-    '$route' (to) {
-      console.log("New Note, to",to)
-      //  '$route' (to, from) {
-      this.initForm(to.query)
     },
-    inputFocus(){
-      if (this.inputFocus == true){this.cardActive = true
-      }else{
-        this.add()
+    watch:{
+      '$route' (to) {
+        console.log("New Note, to",to)
+        //  '$route' (to, from) {
+        this.initForm(to.query)
+      },
+      inputFocus(){
+        if (this.inputFocus == true){
+          this.cardActive = true
+        }
+        // else{
+        //   this.add()
+        // }
       }
     }
   }
-}
-</script>
+  </script>
 
-<style>
+  <style>
 
-</style>
+  </style>

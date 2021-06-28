@@ -10,7 +10,7 @@ import {
   getSourceUrl,
   deleteFile,
   deleteContainer,
-  //  addStringNoLocale,
+  addStringNoLocale,
   setThing,
   saveSolidDatasetAt,
   createSolidDataset,
@@ -22,7 +22,7 @@ import {
   getUrlAll,
   getUrl
 } from "@inrupt/solid-client";
-import { FOAF, /*RDF, LDP,*/ VCARD } from "@inrupt/vocab-common-rdf";
+import { FOAF, /*LDP,*/ VCARD,  RDF, AS  } from "@inrupt/vocab-common-rdf";
 import { WS, /*, VCARD */} from "@inrupt/vocab-solid-common";
 import * as sc from '@inrupt/solid-client-authn-browser'
 import router from '@/router'
@@ -56,6 +56,7 @@ const plugin = {
         await session.logout()
         store.commit('solid/setSession',session)
         store.commit('solid/setPod', {})
+        store.commit('booklice/setPath', "")
       } catch(e){
         alert(e)
       }
@@ -78,7 +79,7 @@ const plugin = {
         //}
 
         //  alert ("url",url)
-           router.push({path: '?'+query})
+        router.push({path: '?'+query})
         store.commit('solid/setSession',session)
         //  dispatch('getPodInfos', session)
         this.$getPodInfosFromSession(session)
@@ -109,6 +110,7 @@ const plugin = {
           store.commit('solid/setPod', pod)
           if (pod.storage != null){
             this.$setCurrentThingUrl(pod.storage)
+            store.commit('booklice/setPath', pod.storage+'public/bookmarks/')
             //let publicTagFile = pod.storage+'public/tags.ttl'
             //let privateTagFile = podStorage+'private/tags.ttl'
             // let tags = await this.$getTags(publicTagFile)
@@ -190,7 +192,7 @@ const plugin = {
         console.log("erreur",e, pod)
       }
       return await pod
-    }
+    },
 
     // Vue.prototype.$getTags = async function (tagFile){
     //   try{
@@ -211,7 +213,40 @@ const plugin = {
     //     return []
     //   }
     // }
+    Vue.prototype.$getResources = async function(path){
+      console.log("reading", path)
+      const myDataset = await getSolidDataset( path, {fetch: sc.fetch});
+      console.log(myDataset)
 
+      let resources = await getContainedResourceUrlAll(myDataset,{fetch: sc.fetch} )
+      console.log("Resources", resources)
+      return resources
+    },
+
+    Vue.prototype.$addBookmark = async function(n){
+      console.log(n)
+      let bm = createSolidDataset()
+      console.log(bm)
+
+      let date = new Date()
+      const name = Date.now();
+      let thing = createThing({name: name})
+      thing = addUrl(thing, RDF.type, AS.Note);
+      thing = addStringNoLocale(thing, AS.name, n.title);
+      thing = addStringNoLocale(thing, AS.content, n.text);
+      n.url != undefined ? thing = addUrl(thing, AS.url, n.url ) : ""
+
+      thing = addUrl(thing, AS.actor, store.state.solid.pod.webId );
+      thing = addStringNoLocale(thing, AS.published, date );
+      let thingInDs = setThing(bm, thing);
+
+
+      let savedThing = await saveSolidDatasetAt(n.path+name+'.ttl', thingInDs, { fetch: sc.fetch } );
+      console.log("File saved",savedThing);
+
+
+
+    },
 
     Vue.prototype.$addTags = async function(params){
       //console.log(params)

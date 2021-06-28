@@ -1,4 +1,5 @@
 const state = () => ({
+  path: "",
   notes: []
   // //pod
   // //  podStorage : null,
@@ -23,6 +24,8 @@ const actions = {
   add(context, n){
     console.log("todo add to pod",n)
     context.commit('add',n)
+    n.path = context.state.path
+    context.dispatch('solid/addBookmark', n, { root: true })
   }
   // processMetaFile(context,file){
   //   try{
@@ -38,7 +41,10 @@ const actions = {
 
 const mutations = {
   add(state, n){
-    state.notes.unshift(n)
+    state.notes.push(n)
+  },
+  setPath(state, p){
+    state.path = p
   }
   // setInput(state, i){
   //   state.input = i
