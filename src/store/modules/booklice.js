@@ -45,6 +45,9 @@ const mutations = {
   },
   setPath(state, p){
     state.path = p
+  },
+  setNotes(state, notes){
+    state.notes = notes
   }
   // setInput(state, i){
   //   state.input = i
