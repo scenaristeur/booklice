@@ -4,7 +4,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/booklice/404.html"
   },
   {
-    "revision": "e457d7ff22ad56526a25",
+    "revision": "86e3fa1bfbd101edbdb2",
     "url": "/booklice/css/app.5c9713c3.css"
   },
   {
@@ -12,7 +12,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/booklice/css/chunk-vendors.590a9ee0.css"
   },
   {
-    "revision": "c2b80742b6f286fc6e9b81900299cc08",
+    "revision": "e069c812332b970bae11eb376af86a5a",
     "url": "/booklice/index.html"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/booklice/js/about.4d875236.js"
   },
   {
-    "revision": "e457d7ff22ad56526a25",
-    "url": "/booklice/js/app.0f2c14e5.js"
+    "revision": "86e3fa1bfbd101edbdb2",
+    "url": "/booklice/js/app.d4ca8242.js"
   },
   {
     "revision": "e8c7c41beceba3800764",
