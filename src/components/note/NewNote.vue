@@ -35,7 +35,9 @@ export default {
     }
   },
   created() {
+    console.log("New Note, query", this.$route.query)
     this.initForm(this.$route.query)
+
   },
   methods:{
     add(){
@@ -45,24 +47,28 @@ export default {
       this.note = {}
     },
     initForm(q){
-      this.note.title = q.title
-      this.note.text = q.text
-      this.note.url = q.url
+      console.log("init",q)
+      let n = {title: q.title,
+      text: q.text,
+      url: q.url}
       //  this.query  = this.$route.query
       //  this.params = this.$route.params
       //  this.fullPath =  this.$route.fullPath
-      this.note.title != undefined || this.note.text != undefined || this.note.url != undefined ? this.cardActive = true : ""
+      n.title != undefined || n.text != undefined || n.url != undefined ? this.cardActive = true : ""
       //  console.log(this.$route)
-      if(this.note.url == undefined && this.note.text.startsWith('http')){
-        this.note.url = this.note.text
-        this.note.text = ""
+      if(n.url == undefined && n.text.startsWith('http')){
+        n.url = n.text
+        n.text = ""
       }
+      this.note = n
+      console.log("note init",this.note)
       // this.title == undefined ? this.title = "no-title" : ""
       this.topic == undefined ? this.topic = "default" : ""
     }
   },
   watch:{
     '$route' (to) {
+      console.log("New Note, to",to)
       //  '$route' (to, from) {
       this.initForm(to.query)
     },

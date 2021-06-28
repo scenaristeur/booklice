@@ -25,6 +25,7 @@ import {
 import { FOAF, /*RDF, LDP,*/ VCARD } from "@inrupt/vocab-common-rdf";
 import { WS, /*, VCARD */} from "@inrupt/vocab-solid-common";
 import * as sc from '@inrupt/solid-client-authn-browser'
+import router from '@/router'
 // import {
 //   WebsocketNotification,
 // } from "@inrupt/solid-client-notifications";
@@ -41,7 +42,7 @@ const plugin = {
         await sc.login({
           oidcIssuer: issuer,
           redirectUrl: window.location.href,
-          clientName: "Vatch",
+          clientName: "Booklice",
         });
       } catch(e){
         alert(e)
@@ -61,17 +62,38 @@ const plugin = {
     },
 
     Vue.prototype.$checkSessions = async function( params){
-      try{
-        await sc.handleIncomingRedirect({restorePreviousSession : params.restore}).then((info) => {
-          console.log(info)
-        })
-        let session = sc.getDefaultSession()
-        sc.onSessionRestore((url) => {
-          console.log("restore",url)
-        });
+      console.log("params",params)
+      console.log("window.location.href", window.location.href)
+      let session = sc.getDefaultSession()
+      console.log("session",session)
+
+      //  let session = sc.getDefaultSession()
+      sc.onSessionRestore((url) => {
+        console.log("restore",url)
+        let query = url.split('?')[1]
+        console.log('query', query)
+        // const p = new URLSearchParams(url);
+        // //  if(p.length>0){
+        // console.log("params Params", p.values)
+        //}
+
+        //  alert ("url",url)
+           router.push({path: '?'+query})
         store.commit('solid/setSession',session)
         //  dispatch('getPodInfos', session)
         this.$getPodInfosFromSession(session)
+      });
+
+
+      try{
+        await sc.handleIncomingRedirect({restorePreviousSession : params.restore, url: window.location.href})
+        .then((info) => {
+          console.log(info)
+        })
+        store.commit('solid/setSession',session)
+        //  dispatch('getPodInfos', session)
+        this.$getPodInfosFromSession(session)
+
       } catch(e){
         alert(e)
       }

@@ -39,8 +39,8 @@
 <div class="container">
 
   <!-- <p v-if="webId == null">
-    You need to <Log /> to your POD.
-  </p> -->
+  You need to <Log /> to your POD.
+</p> -->
 
 
 
@@ -116,16 +116,17 @@ watch: {
     this.webId = this.pod == null ? null : this.pod.webId
   },
   '$route' (to) {
+    console.log(to)
     //  '$route' (to, from) {
-    this.title = to.query.title
-    this.text = to.query.text
-    this.url = to.query.url
-    this.query= to.query
-    this.params = to.params
-    this.fullPath = to.fullPath
-    console.log(this.$route.query)
-    console.log(to.query)
-    this.title != undefined || this.text != undefined || this.url != undefined ? this.$bvModal.show("modal-bookmark") : ""
+    // this.title = to.query.title
+    // this.text = to.query.text
+    // this.url = to.query.url
+    // this.query= to.query
+    // this.params = to.params
+    // this.fullPath = to.fullPath
+    // console.log(this.$route.query)
+    // console.log(to.query)
+    // this.title != undefined || this.text != undefined || this.url != undefined ? this.$bvModal.show("modal-bookmark") : ""
 
     //    this.updatePod()
   },
