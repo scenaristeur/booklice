@@ -45,7 +45,7 @@ const plugin = {
           clientName: "Booklice",
         });
       } catch(e){
-        alert(e)
+        alert("$login",e)
       }
     },
 
@@ -58,7 +58,7 @@ const plugin = {
         store.commit('solid/setPod', {})
         store.commit('booklice/setPath', "")
       } catch(e){
-        alert(e)
+        alert("$logout",e)
       }
     },
 
@@ -96,7 +96,7 @@ const plugin = {
         this.$getPodInfosFromSession(session)
 
       } catch(e){
-        alert(e)
+        alert("$checkSessions",e)
       }
     },
 
@@ -121,7 +121,7 @@ const plugin = {
           store.commit('solid/setThings', [])
         }
       } catch(e){
-        alert(e)
+        alert("$getPodInfosFromSession",e)
       }
     }
 
@@ -169,7 +169,7 @@ const plugin = {
         }
       }
       catch(e){
-        alert(e)
+        alert("$setCurrentThingUrl",e)
       }
 
     },
@@ -229,8 +229,6 @@ const plugin = {
       return resources
     },
 
-
-
     Vue.prototype.$getResource = async function(r){
       let dataset = await getSolidDataset(r, { fetch: sc.fetch });
       console.log(dataset)
@@ -244,14 +242,10 @@ const plugin = {
       return {path: r, thing: thing, title: title, text: text, url: url}
     },
 
-
-
-
     Vue.prototype.$addBookmark = async function(n){
       console.log(n)
       let bm = createSolidDataset()
       console.log(bm)
-
       let date = new Date()
       const name = Date.now();
       let thing = createThing({name: name})
@@ -259,22 +253,14 @@ const plugin = {
       thing = addStringNoLocale(thing, AS.name, n.title);
       thing = addStringNoLocale(thing, AS.content, n.text);
       n.url != undefined ? thing = addUrl(thing, AS.url, n.url ) : ""
-
       thing = addUrl(thing, AS.actor, store.state.solid.pod.webId );
       thing = addStringNoLocale(thing, AS.published, date.toISOString());
       let thingInDs = setThing(bm, thing);
-
-
       let savedThing = await saveSolidDatasetAt(n.path+name+'.ttl', thingInDs, { fetch: sc.fetch } );
       console.log("File saved",savedThing);
-
-
-
     },
 
     Vue.prototype.$addTags = async function(params){
-      //console.log(params)
-
       let tagDataset
       try{
         tagDataset = await getSolidDataset(params.tagFile, {fetch: sc.fetch});
@@ -282,7 +268,6 @@ const plugin = {
       }catch(e){
         //  console.log(e)
       }
-
       //  console.log(tagDataset)
       tagDataset== undefined || tagDataset== null ? tagDataset = createSolidDataset() :""
 
@@ -353,7 +338,7 @@ const plugin = {
           }
         }
       } catch(e){
-        alert(e)
+        alert("$uploadLocalToPod",e)
       }
     },
 
@@ -369,7 +354,7 @@ const plugin = {
         console.log(`File saved at ${getSourceUrl(savedFile)}`);
         this.$setCurrentThingUrl(params.dest)
       } catch(e){
-        alert(e)
+        alert("$createFile",e)
       }
     },
 
@@ -380,7 +365,7 @@ const plugin = {
         console.log(`Folder saved at ${getSourceUrl(savedFolder)}`);
         this.$setCurrentThingUrl(params.dest)
       } catch(e){
-        alert(e)
+        alert("$createFolder",e)
       }
     },
 
@@ -392,7 +377,7 @@ const plugin = {
         );
         console.log(" deleted !",n.path);
       } catch(e){
-        alert(e)
+        alert("$delete",e)
       }
 
     }

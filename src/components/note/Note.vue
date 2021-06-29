@@ -41,7 +41,7 @@
 </template>
 
 
-<b-card-img v-if="n.url != undefined && n.url!= null && n.url.length > 0" :src="img_url"  width="20px" bottom></b-card-img>
+<b-card-img v-if="n.url != undefined && n.url!= null && n.url.length > 0 && with_pic==true" :src="img_url"  width="20px" bottom></b-card-img>
 
 
 </b-card>
@@ -50,7 +50,7 @@
 <script>
 export default {
   name: 'Note',
-  props: ['bm'],
+  props: ['bm', 'with_pic'],
   data(){
     return{
       n: {},
@@ -68,7 +68,8 @@ export default {
   },
   methods: {
     edit(){
-      alert("todo edit")
+      //alert("todo edit")
+      this.$store.commit('booklice/setCurrentNote', this.n)
     },
     trash(){
       var txt;

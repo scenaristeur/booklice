@@ -3,12 +3,17 @@
     <!-- path : {{ path}}
     N{{notes}}N -->
     <!-- {{bms}} -->
-    <b-row>
+    <b-form-checkbox
+    v-model="with_pic">
+    avec images
+  </b-form-checkbox>
 
-      <Note v-for="bm,i in bms.slice().reverse()" :key="i" :bm="bm" />
-    </b-row>
-    <!-- </b-card-group> -->
-  </b-container>
+  <b-row>
+
+    <Note v-for="bm,i in bms.slice().reverse()" :key="i" :bm="bm" :with_pic="with_pic"/>
+  </b-row>
+  <!-- </b-card-group> -->
+</b-container>
 </template>
 
 <script>
@@ -19,7 +24,8 @@ export default {
   },
   data(){
     return{
-      bms: []
+      bms: [],
+      with_pic: false
     }
   },
   created(){

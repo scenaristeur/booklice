@@ -1,5 +1,7 @@
 <template>
   <b-container>
+    <!-- {{ currentNote }} -->
+
     <b-card>
       <b-form-input
       v-if="cardActive"
@@ -91,15 +93,26 @@ export default {
         this.cardActive = true
         this.text_placeholder = "note"
       }
+
       // else{
       //   this.add()
       // }
     },
-    computed:{
-      pod(){
-        return this.$store.state.solid.pod
-      },
+    currentNote(){
+      console.log("currentNote",this.currentNote)
+      this.note = this.currentNote
+      this.cardActive = true
+      this.$refs.text.focus()
     }
+  },
+  computed:{
+    pod(){
+      return this.$store.state.solid.pod
+    },
+    currentNote:{
+      get() { return this.$store.state.booklice.currentNote},
+      set(note) {this.$store.commit('booklice/setCurrentNote', note)}
+    },
   }
 }
 </script>
