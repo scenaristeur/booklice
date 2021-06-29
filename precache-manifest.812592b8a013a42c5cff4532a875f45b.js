@@ -4,7 +4,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/booklice/404.html"
   },
   {
-    "revision": "86e3fa1bfbd101edbdb2",
+    "revision": "882f90a271f71c1b419e",
     "url": "/booklice/css/app.5c9713c3.css"
   },
   {
@@ -12,7 +12,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/booklice/css/chunk-vendors.590a9ee0.css"
   },
   {
-    "revision": "e069c812332b970bae11eb376af86a5a",
+    "revision": "1ad6f7b7ddcdfe398b3bd412ae2f8d2b",
     "url": "/booklice/index.html"
   },
   {
@@ -20,16 +20,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/booklice/js/about.4d875236.js"
   },
   {
-    "revision": "86e3fa1bfbd101edbdb2",
-    "url": "/booklice/js/app.d4ca8242.js"
+    "revision": "882f90a271f71c1b419e",
+    "url": "/booklice/js/app.e3975849.js"
   },
   {
     "revision": "e8c7c41beceba3800764",
     "url": "/booklice/js/bookmarks.19dc9367.js"
   },
   {
-    "revision": "d0f57cb9c7e6dd7c3643",
-    "url": "/booklice/js/chunk-22034325.5e14e3e1.js"
+    "revision": "31cb008aa7da85ed8749",
+    "url": "/booklice/js/chunk-22034325.39ed0d81.js"
   },
   {
     "revision": "720a4d4569ae66ef8157",
@@ -40,12 +40,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/booklice/js/chunk-2d0d9fc1.4c4c9ec2.js"
   },
   {
-    "revision": "c75fc9dd6828c60999ce",
-    "url": "/booklice/js/chunk-2d21ecbc.d6cf5821.js"
+    "revision": "5586f40617c9bf3cc85c",
+    "url": "/booklice/js/chunk-2d21ecbc.b94495a4.js"
   },
   {
-    "revision": "a1110e7e88696f62d334",
-    "url": "/booklice/js/chunk-2d21ed65.ff494edc.js"
+    "revision": "69449c2f6012f00fc384",
+    "url": "/booklice/js/chunk-2d21ed65.4a90dc2b.js"
   },
   {
     "revision": "cf37467ba51d6201f62a",
