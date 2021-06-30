@@ -15,6 +15,7 @@
     "@inrupt/vocab-common-rdf": "^0.7.4",
     "@inrupt/vocab-inrupt-common": "^0.7.4",
     "@inrupt/vocab-solid-common": "^0.7.4",
+    "@johmun/vue-tags-input": "^2.1.0",
     "bootstrap": "^5.0.2",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",

@@ -20,7 +20,22 @@
       v-model="note.url"
       placeholder="Url"
       ></b-form-input>
-      
+
+
+      <vue-tags-input
+      v-if="cardActive"
+      v-model="tag"
+      :tags="tags"
+      @tags-changed="newTags => tags = newTags"
+      />
+
+
+      <!-- <b-form-input
+      v-if="cardActive"
+      v-model="note.tags"
+      placeholder="Tags séparés par une virgule"
+      ></b-form-input> -->
+
       <b-button v-if="cardActive" size="sm" variant="info" @click="add">Enregistrer</b-button>
       <b-button v-if="cardActive" size="sm" variant="light" @click="clean">Annuler</b-button>
     </b-card>
@@ -30,9 +45,14 @@
 <script>
 export default {
   name: 'NewNote',
+  components: {
+    'VueTagsInput': () => import('@johmun/vue-tags-input'),
+  },
   data(){
     return{
-      note: {title: "", text: "", url: ""},
+      tag: '',
+      tags: [],
+      note: {title: "", text: "", url: "", tags: ""},
       inputFocus: false,
       cardActive: false,
       text_placeholder: "Créer une note"
@@ -49,22 +69,24 @@ export default {
         this.clean()
       }else{
         alert("Tu devrais te connecter en selectionnant un fournisseur de PODs, pour enregistrer un Booklice sur ton Pod")
-        let path = "/?title="+this.note.title+"&text="+this.note.text+"&url="+this.note.url
+        let path = "/?title="+this.note.title+"&text="+this.note.text+"&url="+this.note.url+"&tags="+this.note.tags
         this.$router.push({path: path})
       }
     },
     clean(){
-      this.note = {title: "", text: "", url: ""}
-      this.currentNote = {title: "", text: "", url: ""}
+      this.note = {title: "", text: "", url: "", tags: ""}
+      this.currentNote = {title: "", text: "", url: "", tags: ""}
       this.cardActive = false
       this.text_placeholder= "Créer une note"
+      this.tags = []
     },
     initForm(q){
-    //  console.log("init",q)
+      //  console.log("init",q)
       if (q.title != undefined || q.text != undefined || q.url != undefined){
         let n = {title: q.title || "",
         text: q.text || "",
-        url: q.url|| ""}
+        url: q.url || "",
+        tags: q.tags || ""}
         this.cardActive = true
         if(n.url == undefined && n.text.startsWith('http')){
           n.url = n.text
@@ -77,21 +99,28 @@ export default {
     }
   },
   watch:{
+    tags(){
+      console.log(this.tags)
+      this.note.tags = this.tags.map(t => t.text.trim())
+    },
     '$route' (to) {
-    //  console.log("New Note, to",to)
+      //  console.log("New Note, to",to)
       this.initForm(to.query)
     },
     inputFocus(){
       if (this.inputFocus == true){
         this.cardActive = true
-        this.text_placeholder = "note"
+        this.text_placeholder = "Note"
+        this.$refs.text.focus()
       }
     },
     currentNote(){
       //console.log("currentNote",this.currentNote)
       this.note = this.currentNote
+      this.tags = this.currentNote.tags.map(t => {return {text:t}})
       this.cardActive = true
       this.$refs.text.focus()
+      //  console.log(this.$refs.text)
     }
   },
   computed:{

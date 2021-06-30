@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
+      <router-link to="/">Booklice</router-link> |
       <!-- <router-link to="/bookmarks">Bookmarks</router-link> | -->
-      <router-link to="/about">About</router-link>
+      <router-link to="/about">A propos</router-link>
       <Login />
     </div>
     <router-view/>
@@ -23,6 +23,9 @@
         target="_blank">
         https://scenaristeur.github.io/booklice?source=https://spoggy-test13.solidcommunity.net/public/bookmarks/
       </a>
+    </li>
+    <li>
+      Et tu peux même, si tu le souhaites autoriser tes amis à ajouter des booklices et/ou les editer... 
     </li>
 
   </ul>

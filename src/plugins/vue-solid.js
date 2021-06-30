@@ -6,9 +6,11 @@ import {
   getContentType,
   saveFileInContainer,
   getContainedResourceUrlAll,
+  getStringNoLocaleAll,
   //createContainerAt,
   getSourceUrl,
   deleteFile,
+  removeAll,
   //deleteContainer,
   addStringNoLocale,
   setThing,
@@ -244,7 +246,8 @@ const plugin = {
       let title = await getStringNoLocale(thing, AS.name);
       let text = await getStringNoLocale(thing, AS.content);
       let url = await getUrl(thing, AS.url)
-      return {path: r, thing: thing, title: title, text: text, url: url}
+      let tags = await getStringNoLocaleAll(thing, AS.tag)
+      return {path: r, thing: thing, title: title, text: text, url: url, tags: tags}
     },
 
     Vue.prototype.$addBookmark = async function(n){
@@ -265,6 +268,7 @@ const plugin = {
         thing = setStringNoLocale(thing, AS.content, n.text);
         n.url != undefined ? thing = setUrl(thing, AS.url, n.url ) : ""
         thing = setStringNoLocale(thing, AS.updated, date.toISOString());
+        thing = removeAll(thing, AS.tag)
       }else{
         bm = await createSolidDataset()
         thing = await createThing({name: name})
@@ -276,6 +280,9 @@ const plugin = {
         thing = addUrl(thing, AS.actor, store.state.solid.pod.webId );
         thing = addStringNoLocale(thing, AS.published, date.toISOString());
       }
+      n.tags.forEach((t) => {
+        thing = addStringNoLocale(thing, AS.tag, t)
+      });
 
       console.log("todo : use setDatetime, addDatetime")
 

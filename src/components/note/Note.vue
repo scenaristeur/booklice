@@ -10,6 +10,8 @@
   </b-card-text>
   <footer v-if="n.url != undefined && n.url!= null && n.url.length > 0">
     <a :href="n.url" target="_blank">{{n.url}}</a>
+    <hr v-if="n.tags.length>0">
+    <b-button size="sm" v-for="t in n.tags" :key="t" variant="light">{{t}}</b-button>
   </footer>
 
   <!-- <b-card-footer>This is a footer</b-card-footer> -->

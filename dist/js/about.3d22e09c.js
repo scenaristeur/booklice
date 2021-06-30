@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["about"],{f820:function(t,e,o){"use strict";o.r(e);var n=function(){var t=this,e=t.$createElement;t._self._c;return t._m(0)},r=[function(){var t=this,e=t.$createElement,o=t._self._c||e;return o("div",{staticClass:"about"},[o("h1",[t._v("Bookmark on Pod for Alice = Booklice")]),o("a",{attrs:{href:"https://github.com/scenaristeur/booklice/",target:"_blank"}},[t._v("Booklice source")])])}],a=o("2877"),c={},s=Object(a["a"])(c,n,r,!1,null,null,null);e["default"]=s.exports}}]);
+//# sourceMappingURL=about.3d22e09c.js.map
