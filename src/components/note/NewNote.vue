@@ -22,7 +22,8 @@
       v-model="note.url"
       placeholder="Url"
       ></b-form-input>
-      <b-button v-if="cardActive" size="sm" @click="add">Ajouter</b-button>
+      <b-button v-if="cardActive" size="sm" @click="add">Enregistrer</b-button>
+      <b-button v-if="cardActive" size="sm" @click="clean">Annuler</b-button>
     </b-card>
   </b-container>
 </template>
@@ -41,7 +42,6 @@ export default {
   created() {
     console.log("New Note, query", this.$route.query)
     this.initForm(this.$route.query)
-
   },
   methods:{
     add(){
@@ -49,15 +49,19 @@ export default {
         console.log(this.note)
         let n = this.note
         this.$store.dispatch('booklice/add', n)
-        this.note = {title: "", text: "", url: ""}
-        this.cardActive = false
-        this.text_placeholder= "Créer une note"
+        this.clean()
       }else{
         alert("Tu devrais te connecter en selectionnant un fournisseur de PODs, pour enregistrer un Booklice sur ton Pod")
         let path = "/?title="+this.note.title+"&text="+this.note.text+"&url="+this.note.url
         this.$router.push({path: path})
-
       }
+    },
+    clean(){
+      this.note = {title: "", text: "", url: ""}
+      this.currentNote = {title: "", text: "", url: ""}
+      this.cardActive = false
+      this.text_placeholder= "Créer une note"
+
     },
     initForm(q){
       console.log("init",q)
@@ -111,7 +115,7 @@ export default {
     },
     currentNote:{
       get() { return this.$store.state.booklice.currentNote},
-      set(note) {this.$store.commit('booklice/setCurrentNote', note)}
+      set(/*note*/) {/*this.$store.commit('booklice/setCurrentNote', note)*/}
     },
   }
 }

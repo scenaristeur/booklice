@@ -72,6 +72,7 @@ export default {
       this.$store.commit('booklice/setCurrentNote', this.n)
     },
     trash(){
+      console.log("trash", this.n)
       var txt;
       var r = confirm("Es-tu certain.e de vouloir supprimer ce booklice ? Tu ne pourras pas revenir en arrière !");
       if (r == true) {

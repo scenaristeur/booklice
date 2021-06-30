@@ -20,7 +20,11 @@ import {
   getStringNoLocale,
   getThing,
   getUrlAll,
-  getUrl
+  getUrl,
+  //  addDatetime,
+  setUrl,
+  setStringNoLocale,
+  //setDatetime
 } from "@inrupt/solid-client";
 import { FOAF, /*LDP,*/ VCARD,  RDF, AS  } from "@inrupt/vocab-common-rdf";
 import { WS, /*, VCARD */} from "@inrupt/vocab-solid-common";
@@ -244,20 +248,50 @@ const plugin = {
 
     Vue.prototype.$addBookmark = async function(n){
       console.log(n)
-      let bm = createSolidDataset()
-      console.log(bm)
+      let bm
       let date = new Date()
-      const name = Date.now();
-      let thing = createThing({name: name})
-      thing = addUrl(thing, RDF.type, AS.Note);
-      thing = addStringNoLocale(thing, AS.name, n.title);
-      thing = addStringNoLocale(thing, AS.content, n.text);
-      n.url != undefined ? thing = addUrl(thing, AS.url, n.url ) : ""
-      thing = addUrl(thing, AS.actor, store.state.solid.pod.webId );
-      thing = addStringNoLocale(thing, AS.published, date.toISOString());
+      let name = Date.now();
+      let thing
+
+      if (n.thing != undefined){
+        bm =  await getSolidDataset(n.path, {fetch: sc.fetch})
+        name = n.thing.url.split("#")[1]
+        console.log("get thing", name)
+        thing = await getThing(bm, n.thing.url)
+        console.log("replace", thing)
+        thing = setUrl(thing, RDF.type, AS.Note);
+        thing = setStringNoLocale(thing, AS.name, n.title);
+        thing = setStringNoLocale(thing, AS.content, n.text);
+        n.url != undefined ? thing = setUrl(thing, AS.url, n.url ) : ""
+        thing = setStringNoLocale(thing, AS.updated, date.toISOString());
+      }else{
+        bm = await createSolidDataset()
+        thing = await createThing({name: name})
+        console.log("create", thing)
+        thing = addUrl(thing, RDF.type, AS.Note);
+        thing = addStringNoLocale(thing, AS.name, n.title);
+        thing = addStringNoLocale(thing, AS.content, n.text);
+        n.url != undefined ? thing = addUrl(thing, AS.url, n.url ) : ""
+        thing = addUrl(thing, AS.actor, store.state.solid.pod.webId );
+        thing = addStringNoLocale(thing, AS.published, date.toISOString());
+      }
+
+      console.log("todo : use setDatetime, addDatetime")
+
+      console.log(bm)
+
       let thingInDs = setThing(bm, thing);
-      let savedThing = await saveSolidDatasetAt(n.path+name+'.ttl', thingInDs, { fetch: sc.fetch } );
+      let savedThing
+      if (n.thing != undefined){
+        console.log("replace", thing)
+        savedThing  = await saveSolidDatasetAt(n.path, thingInDs, { fetch: sc.fetch } );
+      }else{
+        console.log("new", thing)
+        savedThing  = await saveSolidDatasetAt(n.path+name+'.ttl', thingInDs, { fetch: sc.fetch } );
+      }
+      console.log(thing)
       console.log("File saved",savedThing);
+
     },
 
     Vue.prototype.$addTags = async function(params){
@@ -377,6 +411,7 @@ const plugin = {
         );
         console.log(" deleted !",n.path);
       } catch(e){
+        console.log(e)
         alert("$delete",e)
       }
 
