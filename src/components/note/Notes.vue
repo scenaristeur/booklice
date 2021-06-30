@@ -1,18 +1,11 @@
 <template>
   <b-container>
-    <!-- path : {{ path}}
-    N{{notes}}N -->
-    <!-- {{bms}} -->
     <b-form-checkbox
-    v-model="with_pic">
-    avec images
+    v-model="with_pic"> avec images
   </b-form-checkbox>
-
   <b-row>
-
-    <Note v-for="bm,i in bms.slice().reverse()" :key="i" :bm="bm" :with_pic="with_pic"/>
+    <Note v-for="bm in bms" :key="bm" :bm="bm" :with_pic="with_pic"/>
   </b-row>
-  <!-- </b-card-group> -->
 </b-container>
 </template>
 
@@ -35,23 +28,21 @@ export default {
   },
   watch:{
     async path(){
-      this.bms = await this.$getResources(this.path)
-      // console.log("bms",bms)
-      // this.notes = bms
+      this.$getResources(this.path)
+    },
+    resources(){
+      this.bms = []
+      this.bms = this.resources
     }
   },
   computed:{
-    // notes:{
-    //   get() { return this.$store.state.booklice.notes},
-    //   set(notes) {this.$store.commit('booklice/setNotes', notes)}
-    // },
+    resources:{
+      get() { return this.$store.state.booklice.resources},
+      set(/*notes*/) {/*this.$store.commit('booklice/setNotes', notes)*/}
+    },
     path:{
       get() { return this.$store.state.booklice.path},
       set(path) {this.$store.commit('booklice/setPath', path)}    }
     },
   }
   </script>
-
-  <style>
-
-  </style>

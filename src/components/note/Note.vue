@@ -7,7 +7,6 @@
   <b-card-title>{{n.title}}</b-card-title>
   <b-card-text>
     {{n.text}}
-
   </b-card-text>
   <footer v-if="n.url != undefined && n.url!= null && n.url.length > 0">
     <a :href="n.url" target="_blank">{{n.url}}</a>
@@ -60,7 +59,7 @@ export default {
   },
   async created(){
     this.n = await this.$getResource(this.bm)
-    console.log(this.n)
+    //  console.log(this.n)
     if (this.n.url != undefined && this.n.url != null && this.n.url.length > 0){
       this.img_url = "http://image.thum.io/get/width/400/"+this.n.url
     }
@@ -77,7 +76,7 @@ export default {
       var r = confirm("Es-tu certain.e de vouloir supprimer ce booklice ? Tu ne pourras pas revenir en arrière !");
       if (r == true) {
         txt = "You pressed OK!";
-        this.$delete(this.n)
+        this.$remove(this.n)
       } else {
         txt = "You pressed Cancel!";
       }

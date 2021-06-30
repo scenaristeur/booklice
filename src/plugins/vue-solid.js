@@ -6,7 +6,7 @@ import {
   getContentType,
   saveFileInContainer,
   getContainedResourceUrlAll,
-  createContainerAt,
+  //createContainerAt,
   getSourceUrl,
   deleteFile,
   //deleteContainer,
@@ -230,16 +230,17 @@ const plugin = {
       // }
 
       //  let res = resources.map(async function(x) {return await getResource(x)})
-      return resources
+      //  return resources
+      store.commit('booklice/setResources', resources)
     },
 
     Vue.prototype.$getResource = async function(r){
       let dataset = await getSolidDataset(r, { fetch: sc.fetch });
-      console.log(dataset)
+      //  console.log(dataset)
       let th = await getThingAll(dataset)
-      console.log('th',th)
+      //  console.log('th',th)
       let thing = th[0]
-      console.log(thing)
+      //  console.log(thing)
       let title = await getStringNoLocale(thing, AS.name);
       let text = await getStringNoLocale(thing, AS.content);
       let url = await getUrl(thing, AS.url)
@@ -282,16 +283,21 @@ const plugin = {
 
       let thingInDs = setThing(bm, thing);
       let savedThing
+      let container
       if (n.thing != undefined){
         console.log("replace", thing)
         savedThing  = await saveSolidDatasetAt(n.path, thingInDs, { fetch: sc.fetch } );
+        container = n.path.substr(0, n.path.lastIndexOf("/") + 1);
+
       }else{
         console.log("new", thing)
         savedThing  = await saveSolidDatasetAt(n.path+name+'.ttl', thingInDs, { fetch: sc.fetch } );
+        container = n.path
       }
       console.log(thing)
       console.log("File saved",savedThing);
-
+      console.log("container", container)
+      await this.$getResources(container)
     },
 
     Vue.prototype.$addTags = async function(params){
@@ -376,43 +382,46 @@ const plugin = {
       }
     },
 
-    Vue.prototype.$createFile = async function(params){
-      try{
-        let type = params.type && params.type.mime || "plain/text"
-        let slug = encodeURIComponent(params.filename)
-        const savedFile = await saveFileInContainer(
-          params.dest,
-          new Blob([params.content || ""], { type: type }),
-          { slug: slug, fetch: sc.fetch }
-        );
-        console.log(`File saved at ${getSourceUrl(savedFile)}`);
-        this.$setCurrentThingUrl(params.dest)
-      } catch(e){
-        alert("$createFile",e)
-      }
-    },
+    // Vue.prototype.$createFile = async function(params){
+    //   try{
+    //     let type = params.type && params.type.mime || "plain/text"
+    //     let slug = encodeURIComponent(params.filename)
+    //     const savedFile = await saveFileInContainer(
+    //       params.dest,
+    //       new Blob([params.content || ""], { type: type }),
+    //       { slug: slug, fetch: sc.fetch }
+    //     );
+    //     console.log(`File saved at ${getSourceUrl(savedFile)}`);
+    //     this.$setCurrentThingUrl(params.dest)
+    //   } catch(e){
+    //     alert("$createFile",e)
+    //   }
+    // },
+    //
+    // Vue.prototype.$createFolder = async function(params){
+    //   try{
+    //     let url = params.dest+encodeURIComponent(params.foldername)
+    //     const savedFolder = await createContainerAt(url, {fetch: sc.fetch});
+    //     console.log(`Folder saved at ${getSourceUrl(savedFolder)}`);
+    //     this.$setCurrentThingUrl(params.dest)
+    //   } catch(e){
+    //     alert("$createFolder",e)
+    //   }
+    // },
 
-    Vue.prototype.$createFolder = async function(params){
-      try{
-        let url = params.dest+encodeURIComponent(params.foldername)
-        const savedFolder = await createContainerAt(url, {fetch: sc.fetch});
-        console.log(`Folder saved at ${getSourceUrl(savedFolder)}`);
-        this.$setCurrentThingUrl(params.dest)
-      } catch(e){
-        alert("$createFolder",e)
-      }
-    },
 
-
-    Vue.prototype.$delete = async function(n){
+    Vue.prototype.$remove = async function(n){
+      console.log("N",n)
       try{
         await deleteFile(
           n.path, { fetch: sc.fetch }
         );
         console.log(" deleted !",n.path);
+        let container = n.path.substr(0, n.path.lastIndexOf("/") + 1);
+        await this.$getResources(container)
       } catch(e){
         console.log(e)
-        alert("$delete",e)
+        alert("$remove",e)
       }
 
     }

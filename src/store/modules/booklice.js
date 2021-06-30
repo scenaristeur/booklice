@@ -1,7 +1,8 @@
 const state = () => ({
   path: "",
   notes: [],
-  currentNote: null
+  currentNote: null,
+  resources: []
   // //pod
   // //  podStorage : null,
   //
@@ -53,7 +54,10 @@ const mutations = {
   setCurrentNote(state, n){
     console.log(n)
     state.currentNote = n
-  }
+  },
+  setResources(state, r){
+    state.resources = r.slice().reverse()
+  },
   // setInput(state, i){
   //   state.input = i
   // },

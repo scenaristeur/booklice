@@ -1,7 +1,5 @@
 <template>
   <b-container>
-    <!-- {{ currentNote }} -->
-
     <b-card>
       <b-form-input
       v-if="cardActive"
@@ -22,8 +20,9 @@
       v-model="note.url"
       placeholder="Url"
       ></b-form-input>
-      <b-button v-if="cardActive" size="sm" @click="add">Enregistrer</b-button>
-      <b-button v-if="cardActive" size="sm" @click="clean">Annuler</b-button>
+      
+      <b-button v-if="cardActive" size="sm" variant="info" @click="add">Enregistrer</b-button>
+      <b-button v-if="cardActive" size="sm" variant="light" @click="clean">Annuler</b-button>
     </b-card>
   </b-container>
 </template>
@@ -40,13 +39,11 @@ export default {
     }
   },
   created() {
-    console.log("New Note, query", this.$route.query)
     this.initForm(this.$route.query)
   },
   methods:{
     add(){
       if (this.pod != undefined && this.pod.webId != null){
-        console.log(this.note)
         let n = this.note
         this.$store.dispatch('booklice/add', n)
         this.clean()
@@ -61,35 +58,27 @@ export default {
       this.currentNote = {title: "", text: "", url: ""}
       this.cardActive = false
       this.text_placeholder= "Créer une note"
-
     },
     initForm(q){
-      console.log("init",q)
-
+    //  console.log("init",q)
       if (q.title != undefined || q.text != undefined || q.url != undefined){
         let n = {title: q.title || "",
         text: q.text || "",
         url: q.url|| ""}
-        //  this.query  = this.$route.query
-        //  this.params = this.$route.params
-        //  this.fullPath =  this.$route.fullPath
         this.cardActive = true
-        //  console.log(this.$route)
         if(n.url == undefined && n.text.startsWith('http')){
           n.url = n.text
           n.text = ""
         }
         this.note = n
-        console.log("note init",this.note)
-        // this.title == undefined ? this.title = "no-title" : ""
+        //console.log("note init",this.note)
         this.topic == undefined ? this.topic = "default" : ""
       }
     }
   },
   watch:{
     '$route' (to) {
-      console.log("New Note, to",to)
-      //  '$route' (to, from) {
+    //  console.log("New Note, to",to)
       this.initForm(to.query)
     },
     inputFocus(){
@@ -97,13 +86,9 @@ export default {
         this.cardActive = true
         this.text_placeholder = "note"
       }
-
-      // else{
-      //   this.add()
-      // }
     },
     currentNote(){
-      console.log("currentNote",this.currentNote)
+      //console.log("currentNote",this.currentNote)
       this.note = this.currentNote
       this.cardActive = true
       this.$refs.text.focus()
@@ -120,7 +105,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>
