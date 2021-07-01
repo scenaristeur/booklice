@@ -25,7 +25,7 @@
       </a>
     </li>
     <li>
-      Et tu peux même, si tu le souhaites autoriser tes amis à ajouter des booklices et/ou les editer... 
+      Et tu peux même, si tu le souhaites autoriser tes amis à ajouter des booklices et/ou les editer...
     </li>
 
   </ul>
@@ -48,13 +48,16 @@ export default {
 }
 </script>
 
-
+<style scoped>
+#app{
+    text-align: center;
+}
+</style>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 

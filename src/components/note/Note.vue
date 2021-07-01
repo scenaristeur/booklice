@@ -5,12 +5,12 @@
   @mouseleave="hover = false"
   >
   <b-card-title>{{n.title}}</b-card-title>
-  <b-card-text v-if="with_desc || hover">
+  <b-card-text v-if="options.includes('description') || hover">
     {{n.text}}
   </b-card-text>
   <footer v-if="n.url != undefined && n.url!= null && n.url.length > 0">
     <a :href="n.url" target="_blank">{{n.url}}</a>
-    <div v-if="with_tags || hover">
+    <div v-if="options.includes('tags') || hover">
       <hr v-if="n.tags.length>0">
       <TagButton v-for="t,i in n.tags" :key="i" :t="t" @updateTag="updateTag" />
     </div>
@@ -42,7 +42,7 @@
 </b-button-toolbar>
 </template>
 
-<b-card-img v-if="n.url != undefined && n.url!= null && n.url.length > 0 && (with_pic==true || hover)" :src="img_url"  width="20px" bottom></b-card-img>
+<b-card-img v-if="n.url != undefined && n.url!= null && n.url.length > 0 && (options.includes('image') || hover)" :src="img_url"  width="20px" bottom></b-card-img>
 
 
 </b-card>
@@ -51,7 +51,7 @@
 <script>
 export default {
   name: 'Note',
-  props: ['bm', 'with_pic', 'with_desc', 'with_tags'],
+  props: ['bm', 'options'],
   components: {
     'TagButton': () => import('@/components/note/TagButton'),
   },

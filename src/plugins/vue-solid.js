@@ -51,7 +51,7 @@ const plugin = {
           clientName: "Booklice",
         });
       } catch(e){
-        alert("$login",e)
+        alert("$login "+e)
       }
     },
 
@@ -64,7 +64,7 @@ const plugin = {
         store.commit('solid/setPod', {})
         store.commit('booklice/setPath', "")
       } catch(e){
-        alert("$logout",e)
+        alert("$logout "+e)
       }
     },
 
@@ -102,7 +102,7 @@ const plugin = {
         this.$getPodInfosFromSession(session)
 
       } catch(e){
-        alert("$checkSessions",e)
+        alert("$checkSessions " +e)
       }
     },
 
@@ -127,7 +127,7 @@ const plugin = {
           store.commit('solid/setThings', [])
         }
       } catch(e){
-        alert("$getPodInfosFromSession",e)
+        alert("$getPodInfosFromSession "+e)
       }
     }
 
@@ -175,7 +175,7 @@ const plugin = {
         }
       }
       catch(e){
-        alert("$setCurrentThingUrl",e)
+        alert("$setCurrentThingUrl "+e)
       }
 
     },
@@ -411,7 +411,7 @@ Vue.prototype.$wikidataLabel = async function(uri){
           }
         }
       } catch(e){
-        alert("$uploadLocalToPod",e)
+        alert("$uploadLocalToPod "+e)
       }
     },
 
@@ -454,7 +454,7 @@ Vue.prototype.$wikidataLabel = async function(uri){
         await this.$getResources(container)
       } catch(e){
         console.log(e)
-        alert("$remove",e)
+        alert("$remove "+e)
       }
 
     }

@@ -1,19 +1,47 @@
 <template>
   <b-container>
-    <b-row>
-      <!-- voir https://bootstrap-vue.org/docs/components/form-checkbox -->
-      <b-form-checkbox
-      v-model="with_pic"> avec images
-    </b-form-checkbox>
+
+    <b-form-group label="Options d'affichage:" v-slot="{ ariaDescribedby }">
+      <b-form-checkbox-group
+      id="checkbox-group-1"
+      v-model="options"
+      :options="options_def"
+      :aria-describedby="ariaDescribedby"
+      name="options_affichage"
+      inline
+      ></b-form-checkbox-group>
+    </b-form-group>
+
+    <b-form-group
+  label="Individual inline checkboxes"
+  v-slot="{ ariaDescribedby }"
+>
+  <b-form-checkbox
+    v-for="option in options_def"
+    v-model="options"
+    :key="option.value"
+    :value="option.value"
+    :aria-describedby="ariaDescribedby"
+    name="flavour-4a"
+    inline
+  >
+    {{ option.text }}
+  </b-form-checkbox>
+</b-form-group>
+
+    <!-- <b-row>
     <b-form-checkbox
-    v-model="with_desc"> avec description
+    v-model="with_pic"> avec images
   </b-form-checkbox>
   <b-form-checkbox
-  v-model="with_tags"> avec tags
+  v-model="with_desc"> avec description
 </b-form-checkbox>
-</b-row>
+<b-form-checkbox
+v-model="with_tags"> avec tags
+</b-form-checkbox>
+</b-row> -->
 <b-row>
-  <Note v-for="bm in bms" :key="bm" :bm="bm" :with_pic="with_pic" :with_desc="with_desc" :with_tags="with_tags" />
+  <Note v-for="bm in bms" :key="bm" :bm="bm"  :options="options" />
 </b-row>
 </b-container>
 </template>
@@ -27,9 +55,15 @@ export default {
   data(){
     return{
       bms: [],
-      with_pic: false,
-      with_desc: true,
-      with_tags: true
+      // with_pic: true,
+      // with_desc: true,
+      // with_tags: true,
+      options: [], // Must be an array reference!
+      options_def: [
+        { text: 'Tags', value: 'tags' },
+        { text: 'Description', value: 'description' },
+        { text: 'Image', value: 'image' }
+      ]
     }
   },
   created(){
