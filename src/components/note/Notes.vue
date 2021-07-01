@@ -11,39 +11,10 @@
       inline
       ></b-form-checkbox-group>
     </b-form-group>
-
-    <b-form-group
-  label="Individual inline checkboxes"
-  v-slot="{ ariaDescribedby }"
->
-  <b-form-checkbox
-    v-for="option in options_def"
-    v-model="options"
-    :key="option.value"
-    :value="option.value"
-    :aria-describedby="ariaDescribedby"
-    name="flavour-4a"
-    inline
-  >
-    {{ option.text }}
-  </b-form-checkbox>
-</b-form-group>
-
-    <!-- <b-row>
-    <b-form-checkbox
-    v-model="with_pic"> avec images
-  </b-form-checkbox>
-  <b-form-checkbox
-  v-model="with_desc"> avec description
-</b-form-checkbox>
-<b-form-checkbox
-v-model="with_tags"> avec tags
-</b-form-checkbox>
-</b-row> -->
-<b-row>
-  <Note v-for="bm in bms" :key="bm" :bm="bm"  :options="options" />
-</b-row>
-</b-container>
+    <b-card-group columns>
+      <Note v-for="bm in bms" :key="bm" :bm="bm"  :options="options" />
+    </b-card-group>
+  </b-container>
 </template>
 
 <script>
@@ -58,7 +29,7 @@ export default {
       // with_pic: true,
       // with_desc: true,
       // with_tags: true,
-      options: [], // Must be an array reference!
+      options: ["tags"/*, "description", "image"*/], // Must be an array reference!
       options_def: [
         { text: 'Tags', value: 'tags' },
         { text: 'Description', value: 'description' },

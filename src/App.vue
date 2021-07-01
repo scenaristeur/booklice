@@ -48,7 +48,7 @@ export default {
 }
 </script>
 
-<style scoped>
+/* <style scoped>
 #app{
     text-align: center;
 }
@@ -73,4 +73,4 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
-</style>
+</style> */

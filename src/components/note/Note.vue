@@ -3,13 +3,15 @@
   @mouseover="hover = true"
   @click="hover = true"
   @mouseleave="hover = false"
+  tag="article"
+
   >
-  <b-card-title>{{n.title}}</b-card-title>
-  <b-card-text v-if="options.includes('description') || hover">
+  <b-card-title   title-tag="h5">{{n.title}}</b-card-title>
+  <b-card-sub-title v-if="options.includes('description') || hover">
     {{n.text}}
-  </b-card-text>
+  </b-card-sub-title>
   <footer v-if="n.url != undefined && n.url!= null && n.url.length > 0">
-    <a :href="n.url" target="_blank">{{n.url}}</a>
+    <b-link :href="n.url" target="_blank">{{n.url}}</b-link>
     <div v-if="options.includes('tags') || hover">
       <hr v-if="n.tags.length>0">
       <TagButton v-for="t,i in n.tags" :key="i" :t="t" @updateTag="updateTag" />

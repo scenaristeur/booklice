@@ -16,7 +16,7 @@
     "@inrupt/vocab-inrupt-common": "^0.7.4",
     "@inrupt/vocab-solid-common": "^0.7.4",
     "@johmun/vue-tags-input": "^2.1.0",
-    "bootstrap": "^5.0.2",
+    "bootstrap": "4.5.3",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
     "register-service-worker": "^1.7.1",
