@@ -4,7 +4,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/booklice/404.html"
   },
   {
-    "revision": "e844451589797958d892",
+    "revision": "04313bc5d2ca867e31d9",
     "url": "/booklice/css/app.5c9713c3.css"
   },
   {
@@ -12,52 +12,52 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/booklice/css/chunk-vendors.590a9ee0.css"
   },
   {
-    "revision": "d134e340f75fba7ad88cc02b22f2f08f",
+    "revision": "fdda794949e3c3a0f5ba5c23ac5b3bfb",
     "url": "/booklice/index.html"
   },
   {
-    "revision": "adc9a441d68c27143bdb",
-    "url": "/booklice/js/about.3d22e09c.js"
+    "revision": "41722b68119a6e800ca8",
+    "url": "/booklice/js/about.ed26fa4b.js"
   },
   {
-    "revision": "e844451589797958d892",
-    "url": "/booklice/js/app.ef9a2666.js"
+    "revision": "04313bc5d2ca867e31d9",
+    "url": "/booklice/js/app.86ec0378.js"
   },
   {
-    "revision": "5ae19aaa006eb3665db6",
-    "url": "/booklice/js/bookmarks.9a39881b.js"
+    "revision": "be3659b70f9f2d34a757",
+    "url": "/booklice/js/bookmarks.2893a5aa.js"
   },
   {
-    "revision": "a048ebd3fe818b9f48f4",
-    "url": "/booklice/js/chunk-2d0bceed.f5a98b80.js"
+    "revision": "284d55dd77e8558e02c2",
+    "url": "/booklice/js/chunk-0204cbe2.7b857bb0.js"
   },
   {
-    "revision": "6b2e637ad19181470b5b",
-    "url": "/booklice/js/chunk-2d0d9fc1.c8906f6f.js"
+    "revision": "d8c9d47e7408cc1c4eb7",
+    "url": "/booklice/js/chunk-2d0bceed.03359cc5.js"
+  },
+  {
+    "revision": "767514ca7331d6c06092",
+    "url": "/booklice/js/chunk-2d0d9fc1.2782bf09.js"
   },
   {
     "revision": "350ed4dcbc61658dcfb6",
     "url": "/booklice/js/chunk-2d217c19.64453a92.js"
   },
   {
-    "revision": "b93863aa715cb907be01",
-    "url": "/booklice/js/chunk-2d21ecbc.743d375c.js"
+    "revision": "9444781ebcd14c4148ee",
+    "url": "/booklice/js/chunk-2d21ed65.b6732f45.js"
   },
   {
-    "revision": "3f77a2ec20674e6a21b5",
-    "url": "/booklice/js/chunk-2d21ed65.05ba0248.js"
+    "revision": "d0fc63b7e21b8e66fe2d",
+    "url": "/booklice/js/chunk-4e6e562f.6ff05761.js"
   },
   {
-    "revision": "df74575e7cc89e3b1e9a",
-    "url": "/booklice/js/chunk-4e6e562f.14591420.js"
+    "revision": "ff200ff2f8eb0cac4c9c",
+    "url": "/booklice/js/chunk-a9e2d498.9dabf16f.js"
   },
   {
     "revision": "07520820e8b83841005b",
     "url": "/booklice/js/chunk-e592fad4.2c5f0625.js"
-  },
-  {
-    "revision": "173cc65b988e8c4a63c5",
-    "url": "/booklice/js/chunk-e5f2bdf2.be215a2c.js"
   },
   {
     "revision": "7dcc6e6f89f56a6c3daa",
