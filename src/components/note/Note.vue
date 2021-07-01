@@ -11,7 +11,7 @@
   <footer v-if="n.url != undefined && n.url!= null && n.url.length > 0">
     <a :href="n.url" target="_blank">{{n.url}}</a>
     <hr v-if="n.tags.length>0">
-    <b-button size="sm" v-for="t in n.tags" :key="t" variant="light">{{t}}</b-button>
+    <b-button size="sm" v-for="t in n.tags" :key="t.text" variant="light">{{t.text}}</b-button>
   </footer>
 
   <!-- <b-card-footer>This is a footer</b-card-footer> -->
@@ -66,8 +66,33 @@ export default {
       this.img_url = "http://image.thum.io/get/width/400/"+this.n.url
     }
 
+
+},
+async mounted(){
+
+
+    //console.log(this.n.tags)
+
+
+
+
+  },
+  watch:{
+    n(){
+      this.labels()
+    }
   },
   methods: {
+async labels(){
+  console.log("labels")
+    for (const t of this.n.tags) {
+      //  console.log(t)
+
+      if (t.text == undefined && t.url != undefined){
+        t.text = await this.$wikidataLabel(t.url)
+      }
+    }
+  },
     edit(){
       //alert("todo edit")
       this.$store.commit('booklice/setCurrentNote', this.n)

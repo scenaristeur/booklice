@@ -26,7 +26,8 @@
       v-if="cardActive"
       v-model="tag"
       :tags="tags"
-      @tags-changed="newTags => tags = newTags"
+      :autocomplete-items="autocompleteItems"
+      @tags-changed="update"
       />
 
 
@@ -43,6 +44,9 @@
 </template>
 
 <script>
+import _ from 'underscore'
+const API_URL = 'https://www.wikidata.org/w/api.php?action=wbsearchentities&origin=*&format=json'
+
 export default {
   name: 'NewNote',
   components: {
@@ -52,6 +56,8 @@ export default {
     return{
       tag: '',
       tags: [],
+      autocompleteItems: [],
+      debounce: null,
       note: {title: "", text: "", url: "", tags: ""},
       inputFocus: false,
       cardActive: false,
@@ -59,6 +65,7 @@ export default {
     }
   },
   created() {
+    this.language = navigator.language.split("-")[0] || 'en'
     this.initForm(this.$route.query)
   },
   methods:{
@@ -96,12 +103,52 @@ export default {
         //console.log("note init",this.note)
         this.topic == undefined ? this.topic = "default" : ""
       }
-    }
+    },
+    update(newTags) {
+      this.autocompleteItems = [];
+      this.tags = newTags;
+    },
+    // initItems() {
+    //   if (this.tag.length < 2) return;
+    //   const url = `https://itunes.apple.com/search?term=
+    //   ${this.tag}&entity=allArtist&attribute=allArtistTerm&limit=6`;
+    //
+    //   clearTimeout(this.debounce);
+    //   this.debounce = setTimeout(() => {
+    //     axios.get(url).then(response => {
+    //       this.autocompleteItems = response.data.results.map(a => {
+    //         return { text: a.artistName };
+    //       });
+    //     }).catch(() => console.warn('Oh. Something went wrong'));
+    //   }, 600);
+    // },
+    async getItems(query) {
+      //  this.conceptUri = ""
+      if(query.length>0){
+        this.loading = true
+        let search_url = API_URL+"&language="+this.language+"&search="+query
+        console.log(search_url)
+        try{
+          const res = await fetch(search_url)
+          const suggestions = await res.json()
+          console.log(suggestions)
+          this.items = suggestions.search
+          console.log(this.items)
+          this.autocompleteItems = suggestions.search.map(a => {
+            return { text: a.match.text+" ("+a.description+")", url: a.concepturi };
+          });
+        }catch(e){
+          alert(e)
+        }
+        this.loading = false
+      }
+    },
   },
   watch:{
+    'tag': _.debounce(function(item) { this.getItems(item) }, 500),
     tags(){
       console.log(this.tags)
-      this.note.tags = this.tags.map(t => t.text.trim())
+      this.note.tags = this.tags//.map(t => t.text.trim())
     },
     '$route' (to) {
       //  console.log("New Note, to",to)
@@ -117,7 +164,7 @@ export default {
     currentNote(){
       //console.log("currentNote",this.currentNote)
       this.note = this.currentNote
-      this.tags = this.currentNote.tags.map(t => {return {text:t}})
+      this.tags = this.currentNote.tags//.map(t => {return {text:t}})
       this.cardActive = true
       this.$refs.text.focus()
       //  console.log(this.$refs.text)

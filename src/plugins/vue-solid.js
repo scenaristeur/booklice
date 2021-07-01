@@ -246,10 +246,35 @@ const plugin = {
       let title = await getStringNoLocale(thing, AS.name);
       let text = await getStringNoLocale(thing, AS.content);
       let url = await getUrl(thing, AS.url)
-      let tags = await getStringNoLocaleAll(thing, AS.tag)
+      let tagsUrls = await getUrlAll(thing, AS.tag).map(u => {return {url: u}})
+      let tagsStrings = await getStringNoLocaleAll(thing, AS.tag).map(t => {return {text: t}})
+      let tags = tagsUrls.concat(tagsStrings)
+      console.log("tags", tags)
       return {path: r, thing: thing, title: title, text: text, url: url, tags: tags}
     },
 
+Vue.prototype.$wikidataLabel = async function(uri){
+  let wikidata = 'http://www.wikidata.org/entity/'
+    const API_URL = 'https://www.wikidata.org/w/api.php?action=wbgetentities&origin=*&format=json'
+    let language =  navigator.language.split("-")[0] || 'en'
+    language+='|en'
+
+      let id = uri.split(wikidata)[1]
+      //  console.log(splitext)
+      //  try{
+      let search_url = API_URL+"&ids="+id+"&props=labels&languages="+language
+      const res = await fetch(search_url)
+      //  console.log(res)
+      const json = await res.json()
+      let label
+      try{
+        label = json.entities[id].labels[language] != undefined ? json.entities[id].labels[language].value : json.entities[id].labels.en.value
+      }
+      catch(e){
+        console.log(e,json.entities)
+      }
+      return label
+},
     Vue.prototype.$addBookmark = async function(n){
       console.log(n)
       let bm
@@ -281,7 +306,8 @@ const plugin = {
         thing = addStringNoLocale(thing, AS.published, date.toISOString());
       }
       n.tags.forEach((t) => {
-        thing = addStringNoLocale(thing, AS.tag, t)
+        console.log("tag",t)
+        thing = t.url != undefined && t.url.length > 0 ? addUrl(thing, AS.tag, t.url) : addStringNoLocale(thing, AS.tag, t.text)
       });
 
       console.log("todo : use setDatetime, addDatetime")
