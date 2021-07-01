@@ -5,13 +5,15 @@
   @mouseleave="hover = false"
   >
   <b-card-title>{{n.title}}</b-card-title>
-  <b-card-text>
+  <b-card-text v-if="with_desc || hover">
     {{n.text}}
   </b-card-text>
   <footer v-if="n.url != undefined && n.url!= null && n.url.length > 0">
     <a :href="n.url" target="_blank">{{n.url}}</a>
-    <hr v-if="n.tags.length>0">
-    <b-button size="sm" v-for="t in n.tags" :key="t.text" variant="light">{{t.text}}</b-button>
+    <div v-if="with_tags || hover">
+      <hr v-if="n.tags.length>0">
+      <TagButton v-for="t,i in n.tags" :key="i" :t="t" @updateTag="updateTag" />
+    </div>
   </footer>
 
   <!-- <b-card-footer>This is a footer</b-card-footer> -->
@@ -42,7 +44,7 @@
 </template>
 
 
-<b-card-img v-if="n.url != undefined && n.url!= null && n.url.length > 0 && with_pic==true" :src="img_url"  width="20px" bottom></b-card-img>
+<b-card-img v-if="n.url != undefined && n.url!= null && n.url.length > 0 && (with_pic==true || hover)" :src="img_url"  width="20px" bottom></b-card-img>
 
 
 </b-card>
@@ -51,7 +53,10 @@
 <script>
 export default {
   name: 'Note',
-  props: ['bm', 'with_pic'],
+  props: ['bm', 'with_pic', 'with_desc', 'with_tags'],
+  components: {
+    'TagButton': () => import('@/components/note/TagButton'),
+  },
   data(){
     return{
       n: {},
@@ -65,34 +70,12 @@ export default {
     if (this.n.url != undefined && this.n.url != null && this.n.url.length > 0){
       this.img_url = "http://image.thum.io/get/width/400/"+this.n.url
     }
-
-
-},
-async mounted(){
-
-
-    //console.log(this.n.tags)
-
-
-
-
-  },
-  watch:{
-    n(){
-      this.labels()
-    }
   },
   methods: {
-async labels(){
-  console.log("labels")
-    for (const t of this.n.tags) {
-      //  console.log(t)
-
-      if (t.text == undefined && t.url != undefined){
-        t.text = await this.$wikidataLabel(t.url)
-      }
-    }
-  },
+    updateTag(t){
+      let ind = this.n.tags.findIndex(x => x.url == t.url)
+      Object.assign(this.n.tags[ind], t);
+    },
     edit(){
       //alert("todo edit")
       this.$store.commit('booklice/setCurrentNote', this.n)

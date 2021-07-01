@@ -1,11 +1,20 @@
 <template>
   <b-container>
+    <b-row>
+      <!-- voir https://bootstrap-vue.org/docs/components/form-checkbox -->
+      <b-form-checkbox
+      v-model="with_pic"> avec images
+    </b-form-checkbox>
     <b-form-checkbox
-    v-model="with_pic"> avec images
+    v-model="with_desc"> avec description
   </b-form-checkbox>
-  <b-row>
-    <Note v-for="bm in bms" :key="bm" :bm="bm" :with_pic="with_pic"/>
-  </b-row>
+  <b-form-checkbox
+  v-model="with_tags"> avec tags
+</b-form-checkbox>
+</b-row>
+<b-row>
+  <Note v-for="bm in bms" :key="bm" :bm="bm" :with_pic="with_pic" :with_desc="with_desc" :with_tags="with_tags" />
+</b-row>
 </b-container>
 </template>
 
@@ -18,7 +27,9 @@ export default {
   data(){
     return{
       bms: [],
-      with_pic: false
+      with_pic: false,
+      with_desc: true,
+      with_tags: true
     }
   },
   created(){

@@ -249,7 +249,7 @@ const plugin = {
       let tagsUrls = await getUrlAll(thing, AS.tag).map(u => {return {url: u}})
       let tagsStrings = await getStringNoLocaleAll(thing, AS.tag).map(t => {return {text: t}})
       let tags = tagsUrls.concat(tagsStrings)
-      console.log("tags", tags)
+    //  console.log("tags", tags)
       return {path: r, thing: thing, title: title, text: text, url: url, tags: tags}
     },
 
