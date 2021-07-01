@@ -4,7 +4,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/booklice/404.html"
   },
   {
-    "revision": "04313bc5d2ca867e31d9",
+    "revision": "fa4619767939125e8764",
     "url": "/booklice/css/app.5c9713c3.css"
   },
   {
@@ -12,7 +12,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/booklice/css/chunk-vendors.590a9ee0.css"
   },
   {
-    "revision": "fdda794949e3c3a0f5ba5c23ac5b3bfb",
+    "revision": "6ce62a2e535ab81873fa87e6eede8db1",
     "url": "/booklice/index.html"
   },
   {
@@ -20,16 +20,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/booklice/js/about.ed26fa4b.js"
   },
   {
-    "revision": "04313bc5d2ca867e31d9",
-    "url": "/booklice/js/app.86ec0378.js"
+    "revision": "fa4619767939125e8764",
+    "url": "/booklice/js/app.574e656b.js"
   },
   {
-    "revision": "be3659b70f9f2d34a757",
-    "url": "/booklice/js/bookmarks.2893a5aa.js"
-  },
-  {
-    "revision": "284d55dd77e8558e02c2",
-    "url": "/booklice/js/chunk-0204cbe2.7b857bb0.js"
+    "revision": "77de6194c7bd86f20f4c",
+    "url": "/booklice/js/bookmarks.9ba6598b.js"
   },
   {
     "revision": "d8c9d47e7408cc1c4eb7",
@@ -40,16 +36,24 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/booklice/js/chunk-2d0d9fc1.2782bf09.js"
   },
   {
+    "revision": "4ddef552e450160657a2",
+    "url": "/booklice/js/chunk-2d0e5782.ade316b2.js"
+  },
+  {
     "revision": "350ed4dcbc61658dcfb6",
     "url": "/booklice/js/chunk-2d217c19.64453a92.js"
   },
   {
-    "revision": "9444781ebcd14c4148ee",
-    "url": "/booklice/js/chunk-2d21ed65.b6732f45.js"
+    "revision": "4387d89b69f080ca2741",
+    "url": "/booklice/js/chunk-2d21ed65.4d573b24.js"
   },
   {
-    "revision": "d0fc63b7e21b8e66fe2d",
-    "url": "/booklice/js/chunk-4e6e562f.6ff05761.js"
+    "revision": "62233212af84c6ce0778",
+    "url": "/booklice/js/chunk-392ccdba.bb8d0196.js"
+  },
+  {
+    "revision": "74553fc4b246c53d6b86",
+    "url": "/booklice/js/chunk-452d915a.879fb0af.js"
   },
   {
     "revision": "ff200ff2f8eb0cac4c9c",

@@ -40,9 +40,7 @@
     <b-button>&raquo;</b-button>
   </b-button-group> -->
 </b-button-toolbar>
-
 </template>
-
 
 <b-card-img v-if="n.url != undefined && n.url!= null && n.url.length > 0 && (with_pic==true || hover)" :src="img_url"  width="20px" bottom></b-card-img>
 
