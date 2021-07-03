@@ -277,6 +277,7 @@ Vue.prototype.$wikidataLabel = async function(uri){
 },
     Vue.prototype.$addBookmark = async function(n){
       console.log(n)
+      let bookliceWall = "https://booklice.solidweb.org/public/bookmarks/"
       let bm
       let date = new Date()
       let name = Date.now();
@@ -317,6 +318,8 @@ Vue.prototype.$wikidataLabel = async function(uri){
       let thingInDs = setThing(bm, thing);
       let savedThing
       let container
+
+      console.log(thingInDs)
       if (n.thing != undefined){
         console.log("replace", thing)
         savedThing  = await saveSolidDatasetAt(n.path, thingInDs, { fetch: sc.fetch } );
@@ -326,6 +329,13 @@ Vue.prototype.$wikidataLabel = async function(uri){
         console.log("new", thing)
         savedThing  = await saveSolidDatasetAt(n.path+name+'.ttl', thingInDs, { fetch: sc.fetch } );
         container = n.path
+
+      }
+
+      if(n.share == true){
+        console.log("share")
+        let sharedThing  = await saveSolidDatasetAt(bookliceWall+name+'.ttl', thingInDs, { fetch: sc.fetch } );
+        console.log("sharedThing", sharedThing)
       }
       console.log(thing)
       console.log("File saved",savedThing);

@@ -39,6 +39,13 @@
 
       <b-button v-if="cardActive" size="sm" variant="info" @click="add">Enregistrer</b-button>
       <b-button v-if="cardActive" size="sm" variant="light" @click="clean">Annuler</b-button>
+
+      <b-form-checkbox v-model="share" name="check-button" v-if="cardActive">
+        Partager sur
+        <a href=" https://scenaristeur.github.io/booklice?source=https://booklice.solidweb.org/public/bookmarks/"
+        target="_blank">Booklice Pod</a>
+      </b-form-checkbox>
+
     </b-card>
   </b-container>
 </template>
@@ -61,7 +68,9 @@ export default {
       note: {title: "", text: "", url: "", tags: ""},
       inputFocus: false,
       cardActive: false,
-      text_placeholder: "Créer une note"
+      text_placeholder: "Créer une note",
+      share: true,
+      checked1: true,
     }
   },
   created() {
@@ -72,6 +81,7 @@ export default {
     add(){
       if (this.pod != undefined && this.pod.webId != null){
         let n = this.note
+        n.share = this.share
         this.$store.dispatch('booklice/add', n)
         this.clean()
       }else{
