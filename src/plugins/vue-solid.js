@@ -85,7 +85,14 @@ const plugin = {
         //}
 
         //  alert ("url",url)
-        router.push({path: '?'+query})
+        if (query != undefined)
+        {
+          router.push({path: url+'?'+query})
+        }
+        // else{
+        //   router.push({path: url})
+        // }
+
         store.commit('solid/setSession',session)
         //  dispatch('getPodInfos', session)
         this.$getPodInfosFromSession(session)
@@ -249,15 +256,15 @@ const plugin = {
       let tagsUrls = await getUrlAll(thing, AS.tag).map(u => {return {url: u}})
       let tagsStrings = await getStringNoLocaleAll(thing, AS.tag).map(t => {return {text: t}})
       let tags = tagsUrls.concat(tagsStrings)
-    //  console.log("tags", tags)
+      //  console.log("tags", tags)
       return {path: r, thing: thing, title: title, text: text, url: url, tags: tags}
     },
 
-Vue.prototype.$wikidataLabel = async function(uri){
-  let wikidata = 'http://www.wikidata.org/entity/'
-    const API_URL = 'https://www.wikidata.org/w/api.php?action=wbgetentities&origin=*&format=json'
-    let language =  navigator.language.split("-")[0] || 'en'
-    language+='|en'
+    Vue.prototype.$wikidataLabel = async function(uri){
+      let wikidata = 'http://www.wikidata.org/entity/'
+      const API_URL = 'https://www.wikidata.org/w/api.php?action=wbgetentities&origin=*&format=json'
+      let language =  navigator.language.split("-")[0] || 'en'
+      language+='|en'
 
       let id = uri.split(wikidata)[1]
       //  console.log(splitext)
@@ -274,7 +281,7 @@ Vue.prototype.$wikidataLabel = async function(uri){
         console.log(e,json.entities)
       }
       return label
-},
+    },
     Vue.prototype.$addBookmark = async function(n){
       console.log(n)
       let bookliceWall = "https://booklice.solidweb.org/public/bookmarks/"
