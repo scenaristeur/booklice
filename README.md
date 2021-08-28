@@ -3,8 +3,8 @@
 - bug connu problème de redirection de pages lors de la connexion https://github.com/inrupt/solid-client-authn-js/issues/1473
 
 # Demo
-- create your POD and use Booklice in 3 mins https://youtu.be/_d1P09RshWY
-- créer un POD et utiliser Booklice en 3 mins https://youtu.be/_d1P09RshWY
+- create your POD and use Booklice in 3 mins [](https://youtu.be/_d1P09RshWY)
+- créer un POD et utiliser Booklice en 3 mins [](https://youtu.be/_d1P09RshWY)
 
 - quick Demo By @jaxoncreed on LinkedIn https://www.linkedin.com/feed/update/urn:li:activity:6834183661651292160/
 
