@@ -34,6 +34,9 @@
       https://scenaristeur.github.io/booklice?source=https://spoggy-test13.solidcommunity.net/public/bookmarks/
     </a>
   </li>
+  <li>
+    voici aussi l'intégralité <a href="https://scenaristeur.github.io/booklice?source=https://booklice.solidweb.org/public/bookmarks/">des bookmarks partagés</a>
+  </li>
 
 
   <li>
