@@ -19,33 +19,35 @@
 
     </li>
 
-    <li>Booklice te permet d'enregistrer tes liens favoris sur ton POD.</li>
-    <li>dans le dossier /public/bookmarks comme
-      <a href="https://spoggy-test13.solidcommunity.net/public/bookmarks/"
-      target="_blank">celui-ci</a>
+    <li><a href="https://scenaristeur.github.io/booklice/about" target="_blank">
+      Créer un POD & utiliser Booklice en 3 mins / Create a pod & use Booklice in 3 mins</a>
+      <li>Booklice te permet d'enregistrer tes liens favoris sur ton POD.</li>
+      <li>dans le dossier /public/bookmarks comme
+        <a href="https://spoggy-test13.solidcommunity.net/public/bookmarks/"
+        target="_blank">celui-ci</a>
+      </li>
+      <li>
+        te permettant ensuite de le partager avec le paramètre <b>?source=</b>
+      </li>
+      <li>
+        ce qui donne par exemple
+        <a href="https://scenaristeur.github.io/booklice?source=https://spoggy-test13.solidcommunity.net/public/bookmarks/"
+        target="_blank">
+        https://scenaristeur.github.io/booklice?source=https://spoggy-test13.solidcommunity.net/public/bookmarks/
+      </a>
     </li>
     <li>
-      te permettant ensuite de le partager avec le paramètre <b>?source=</b>
+      voici aussi l'intégralité <a href="https://scenaristeur.github.io/booklice?source=https://booklice.solidweb.org/public/bookmarks/">des bookmarks partagés</a>
     </li>
+
+
     <li>
-      ce qui donne par exemple
-      <a href="https://scenaristeur.github.io/booklice?source=https://spoggy-test13.solidcommunity.net/public/bookmarks/"
-      target="_blank">
-      https://scenaristeur.github.io/booklice?source=https://spoggy-test13.solidcommunity.net/public/bookmarks/
-    </a>
-  </li>
-  <li>
-    voici aussi l'intégralité <a href="https://scenaristeur.github.io/booklice?source=https://booklice.solidweb.org/public/bookmarks/">des bookmarks partagés</a>
-  </li>
+      Et tu peux même, si tu le souhaites autoriser tes amis à ajouter des booklices et/ou les editer...
+    </li>
 
+  </ul>
 
-  <li>
-    Et tu peux même, si tu le souhaites autoriser tes amis à ajouter des booklices et/ou les editer...
-  </li>
-
-</ul>
-
--v.0.0.1-
+  -v.0.0.1-
 
 </div>
 </template>

@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/booklice/precache-manifest.6e9453c77da1a2e073133f7443fac3bd.js"
+  "/booklice/precache-manifest.02ebe896641b078a7a06f5d79f606caf.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "booklice"});
