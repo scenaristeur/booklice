@@ -1,6 +1,6 @@
 # booklice
 
-- bug connu
+- bug connu problème de redirection de pages lors de la connexion https://github.com/inrupt/solid-client-authn-js/issues/1473
 
 # Demo
 - create your POD and use Booklice in 3 mins https://youtu.be/_d1P09RshWY
