@@ -313,10 +313,14 @@ const plugin = {
         thing = addUrl(thing, AS.actor, store.state.solid.pod.webId );
         thing = addStringNoLocale(thing, AS.published, date.toISOString());
       }
+
+    if (typeof n.tags == "object"){
       n.tags.forEach((t) => {
         console.log("tag",t)
         thing = t.url != undefined && t.url.length > 0 ? addUrl(thing, AS.tag, t.url) : addStringNoLocale(thing, AS.tag, t.text)
       });
+    }
+
 
       console.log("todo : use setDatetime, addDatetime")
 
