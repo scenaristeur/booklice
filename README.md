@@ -1,5 +1,20 @@
 # booklice
 
+- bug connu
+
+# Demo
+- create your POD and use Booklice in 3 mins https://youtu.be/_d1P09RshWY
+- créer un POD et utiliser Booklice en 3 mins https://youtu.be/_d1P09RshWY
+
+- quick Demo By @jaxoncreed on LinkedIn https://www.linkedin.com/feed/update/urn:li:activity:6834183661651292160/
+
+- big demo in french https://www.youtube.com/watch?v=yV1Z4Sfvebo&t=20s
+
+
+# public bookmarks folder
+- https://booklice.solidweb.org/public/bookmarks/
+
+
 ## Project setup
 ```
 npm install
