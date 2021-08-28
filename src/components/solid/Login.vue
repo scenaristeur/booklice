@@ -53,6 +53,7 @@ export default {
         { value: "https://dev.inrupt.net", text: 'dev.inrupt.net' },
         { value: "https://solidcommunity.net", text: 'SolidCommunity.net' },
         { value: "https://solidweb.org", text: 'Solidweb.org' },
+        { value: "https://trinpod.us/", text: 'Trinpod.us'},
         { value: "other", text: 'Autre / Other' },
 
       ],

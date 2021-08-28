@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === 'production') {
     },
     updated () {
       console.log('New content is available; please refresh.')
-      alert("Booklice a été mis à jour, STP ferme l'appli et réouvre-la pour en profiter.")
+      alert("Booklice a été mis à jour, STP ferme l'appli et réouvre-la pour profiter de la mise à jour.")
     },
     offline () {
       console.log('No internet connection found. App is running in offline mode.')
