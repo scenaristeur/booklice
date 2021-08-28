@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["bookmarks"],{b51b:function(e,n,a){"use strict";a.r(n);var t=function(){var e=this,n=e.$createElement,a=e._self._c||n;return a("div",{staticClass:"bookmarks"},[a("ShareTarget"),e._v(" Booklice ")],1)},o=[],r=(a("d3b7"),a("3ca3"),a("ddb0"),{name:"BookmarksView",components:{ShareTarget:function(){return a.e("chunk-392ccdba").then(a.bind(null,"d2d9"))}}}),c=r,s=a("2877"),l=Object(s["a"])(c,t,o,!1,null,null,null);n["default"]=l.exports}}]);
+//# sourceMappingURL=bookmarks.f767dc63.js.map
