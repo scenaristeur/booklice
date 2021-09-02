@@ -2,7 +2,8 @@ const state = () => ({
   path: "",
   notes: [],
   currentNote: null,
-  resources: []
+  resources: [],
+  filters: []
   // //pod
   // //  podStorage : null,
   //
@@ -58,6 +59,18 @@ const mutations = {
   setResources(state, r){
     state.resources = r.slice().reverse()
   },
+  filter(state, f){
+    !state.filters.includes(f) ? state.filters.push(f) : ""
+    console.log(state.filters)
+  },
+  resetFilter(state){
+    state.filters = []
+  },
+  removeFilter(state,f){
+  let id = state.filters.indexOf(f)
+  console.log(id)
+  state.filters.splice(id, 1);
+  }
   // setInput(state, i){
   //   state.input = i
   // },

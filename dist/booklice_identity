@@ -1,0 +1,11 @@
+{
+  "@context": "https://www.w3.org/ns/solid/oidc-context.jsonld",
+  "client_id": "https://scenaristeur.github.io/booklice/booklice_identity",
+  "redirect_uris": ["https://scenaristeur.github.io/booklice/"],
+  "client_name": "Booklice",
+  "client_uri": "https://scenaristeur.github.io/booklice/",
+  "logo_uri": "https://scenaristeur.github.io/booklice/logo.png",
+  "tos_uri": "https://scenaristeur.github.io/booklice/terms.html",
+  "policy_uri": "https://scenaristeur.github.io/booklice/policy.html",
+  "contacts": ["scenaristeur@gmail.com"]
+}

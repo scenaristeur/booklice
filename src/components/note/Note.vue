@@ -1,12 +1,16 @@
 <template>
   <b-card style="max-width: 20rem;" class="m-3"
-  @mouseover="hover = true"
+
   @click="hover = true"
-  @mouseleave="hover = false"
+
   tag="article"
+  v-if="show == true"
 
   >
-  <b-card-title   title-tag="h5">{{n.title}}</b-card-title>
+  <b-card-title   title-tag="h5"
+  @mouseover="hover = true"
+  @mouseleave="hover = false"
+  >{{n.title}}</b-card-title>
   <b-card-sub-title v-if="options.includes('description') || hover">
     {{n.text}}
   </b-card-sub-title>
@@ -61,7 +65,8 @@ export default {
     return{
       n: {},
       hover: false,
-      img_url: ""
+      img_url: "",
+      show : true
     }
   },
   async created(){
@@ -73,8 +78,26 @@ export default {
   },
   methods: {
     updateTag(t){
+
+      this.updateFiltered()
       let ind = this.n.tags.findIndex(x => x.url == t.url)
       Object.assign(this.n.tags[ind], t);
+    },
+    updateFiltered(){
+    //  console.log(this.filters, this.n.tags)
+
+      if (this.filters.length > 0){
+        this.show = false
+      this.n.tags.forEach((t) => {
+        if(this.filters.includes(t.text)){
+          this.show = true
+        }
+      });
+    }else{
+      this.show = true
+    }
+
+
     },
     edit(){
       //alert("todo edit")
@@ -98,6 +121,18 @@ export default {
     //
     // }
 
+  },
+  watch:{
+    filters(){
+      this.show = false
+      this.updateFiltered()
+    }
+  },
+  computed:{
+    filters:{
+      get() { return this.$store.state.booklice.filters},
+      set(/*notes*/) {/*this.$store.commit('booklice/setNotes', notes)*/}
+    },
   }
 
 }

@@ -6,6 +6,10 @@
       <router-link to="/about">A propos</router-link>
       <Login />
     </div>
+
+<!--router.push({ path: 'register', query: { plan: 'private' }})-->
+    <b-button variant="outline-success" to="?source=https://booklice.solidweb.org/public/bookmarks/">Community's bookmarks</b-button>
+
     <router-view/>
 
     <ul>
@@ -36,9 +40,7 @@
         https://scenaristeur.github.io/booklice?source=https://spoggy-test13.solidcommunity.net/public/bookmarks/
       </a>
     </li>
-    <li>
-      voici aussi l'intégralité <a href="https://scenaristeur.github.io/booklice?source=https://booklice.solidweb.org/public/bookmarks/">des bookmarks partagés</a>
-    </li>
+
 
 
     <li>
@@ -47,7 +49,7 @@
 
   </ul>
 
-  -v.0.0.1-
+  -v.0.0.2- login redirect & filters
 
 </div>
 </template>
@@ -62,6 +64,7 @@ export default {
   components: {
     'Login': () => import('@/components/solid/Login')
   },
+
   computed:{
     path:{
       get() { return this.$store.state.booklice.path},

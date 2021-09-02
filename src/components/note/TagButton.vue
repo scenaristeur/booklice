@@ -1,5 +1,5 @@
 <template>
-  <b-button size="sm"  variant="light">{{text}}</b-button>
+  <b-button size="sm" variant="light" @click="filter">{{text}}</b-button>
 </template>
 
 <script>
@@ -18,7 +18,14 @@ export default {
       this.text = await this.$wikidataLabel(this.t.url)
       this.$emit('updateTag', { text: this.text, url: this.t.url})
     }
+  },
+  methods:{
+    filter(){
+      console.log(this.text)
+        this.$store.commit('booklice/filter', this.text)
+    }
   }
+
 }
 </script>
 

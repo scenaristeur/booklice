@@ -37,10 +37,63 @@ import router from '@/router'
 // } from "@inrupt/solid-client-notifications";
 // import * as jsonld from 'jsonld';
 
+const LOCAL_STORAGE_KEY__SOLID_SESSION_RESTORE_URL = "solid_session_restore_url"
+
 
 const plugin = {
   install(Vue, opts = {}) {
     let store = opts.store
+
+    // Vue.prototype.$storeQueryParameters = async function(){
+    //   console.log("STORING", window.location)
+    //   let origin = {
+    //     host: window.location.host,
+    //     pathname: window.location.pathname,
+    //     search: window.location.search,
+    //     hash: window.location.hash
+    //   }
+    //   localStorage.setItem('booklice', JSON.stringify(origin));
+    // },
+
+
+    Vue.prototype.correct_path = async function ()
+    {
+        const url = localStorage.getItem(LOCAL_STORAGE_KEY__SOLID_SESSION_RESTORE_URL)
+        if (!url) return
+
+        const url_object = new URL(url)
+
+        // Paths are the same so nothing to do here.
+        // For the hash component it seems fine and I think that's because in my application the path determines
+        // which application code is loaded (/app vs /sandbox) but I could see how two SPAs on the
+        // same domain but which the query parameter or hash determined which would load would
+        // need to do a check here.
+        if (document.location.pathname === url_object.pathname) return
+
+        const new_url = new URL(document.location.href)
+        new_url.pathname = url_object.pathname
+        // Force the page to change to the new URL, e.g. correct from attempting to:
+        // 1.  sign in to `/sandbox`
+        // 2.  having solid reuse your old path at `/app` and incorrectly redirect you there
+        // When the page reloads it will hit the path equality conditional above and correctly return early.
+        document.location.href = new_url.toString()
+
+      //  return Promise.reject()
+      this.finish_login()
+    },
+
+
+    Vue.prototype.finish_login = async function ()
+    {
+        localStorage.setItem(LOCAL_STORAGE_KEY__SOLID_SESSION_RESTORE_URL, window.location.toString())
+
+        await sc.handleIncomingRedirect({ restorePreviousSession: true })
+
+        // This line is not reached until you are successfully logged in
+        localStorage.setItem(LOCAL_STORAGE_KEY__SOLID_SESSION_RESTORE_URL, "")
+    }
+
+
 
     Vue.prototype.$login= async function(issuer) {
 
@@ -49,6 +102,8 @@ const plugin = {
           oidcIssuer: issuer,
           redirectUrl: window.location.href,
           clientName: "Booklice",
+          //  redirectUrl: "https://scenaristeur.github.io/booklice/", // Redirect back to application
+          clientId: "https://scenaristeur.github.io/booklice/booklice_identity"    // Client WebID
         });
       } catch(e){
         alert("$login "+e)
@@ -70,25 +125,45 @@ const plugin = {
 
     Vue.prototype.$checkSessions = async function( params){
       console.log("params",params)
+    //  await this.$storeQueryParameters()
       console.log("window.location.href", window.location.href)
       let session = sc.getDefaultSession()
       console.log("session",session)
 
       //  let session = sc.getDefaultSession()
-      sc.onSessionRestore((url) => {
+      sc.onSessionRestore(url => {
         console.log("restore",url)
-        let query = url.split('?')[1]
-        console.log('query', query)
+        if (document.location.toString() !== url)
+      {
+          // I do not think this is needed anymore but I'm not 100% sure now.
+          // I think the application only now needs:
+          //            history.replaceState(null, "", url)
+          //
+          if (document.location.pathname !== new URL(url).pathname)
+          {
+            console.log(document.location.pathname)
+            console.log(new URL(url))
+let u = new URL(url)
+let path = u.pathname+u.search+u.hash
+console.log("path",path)
+            router.push({path: path})
+                       //document.location.href = url
+          }
+
+        //  else history.replaceState(null, "", url)
+      }
+        // let query = url.split('?')[1]
+        // console.log('query', query)
         // const p = new URLSearchParams(url);
         // //  if(p.length>0){
         // console.log("params Params", p.values)
         //}
 
         //  alert ("url",url)
-        if (query != undefined)
-        {
-          router.push({path: url+'?'+query})
-        }
+        // if (query != undefined)
+        // {
+        //   router.push({path: url+'?'+query})
+        // }
         // else{
         //   router.push({path: url})
         // }
@@ -314,12 +389,12 @@ const plugin = {
         thing = addStringNoLocale(thing, AS.published, date.toISOString());
       }
 
-    if (typeof n.tags == "object"){
-      n.tags.forEach((t) => {
-        console.log("tag",t)
-        thing = t.url != undefined && t.url.length > 0 ? addUrl(thing, AS.tag, t.url) : addStringNoLocale(thing, AS.tag, t.text)
-      });
-    }
+      if (typeof n.tags == "object"){
+        n.tags.forEach((t) => {
+          console.log("tag",t)
+          thing = t.url != undefined && t.url.length > 0 ? addUrl(thing, AS.tag, t.url) : addStringNoLocale(thing, AS.tag, t.text)
+        });
+      }
 
 
       console.log("todo : use setDatetime, addDatetime")

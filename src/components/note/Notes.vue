@@ -11,6 +11,7 @@
       inline
       ></b-form-checkbox-group>
     </b-form-group>
+    <Filters />
     <b-card-group columns>
       <Note v-for="bm in bms" :key="bm" :bm="bm"  :options="options" />
     </b-card-group>
@@ -22,6 +23,7 @@ export default {
   name: 'Notes',
   components: {
     'Note': () => import('@/components/note/Note'),
+    'Filters': () => import('@/components/note/Filters'),
   },
   data(){
     return{
@@ -46,6 +48,11 @@ export default {
     async path(){
       this.$getResources(this.path)
     },
+    $route(to){
+      if(to.query.source != undefined){
+        this.path = to.query.source
+      }
+    },
     resources(){
       this.bms = []
       this.bms = this.resources
@@ -60,5 +67,6 @@ export default {
       get() { return this.$store.state.booklice.path},
       set(path) {this.$store.commit('booklice/setPath', path)}    }
     },
+
   }
   </script>

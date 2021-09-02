@@ -86,7 +86,7 @@ export default {
         this.clean()
       }else{
         alert("Tu devrais te connecter en selectionnant un fournisseur de PODs, pour enregistrer un Booklice sur ton Pod")
-        let path = "/?title="+this.note.title+"&text="+this.note.text+"&url="+this.note.url+"&tags="+this.note.tags
+        let path = "/?title="+this.note.title+"&text="+this.note.text+"&url="+this.note.url+"&tags="+JSON.stringify(this.note.tags)
         this.$router.push({path: path})
       }
     },
@@ -98,19 +98,21 @@ export default {
       this.tags = []
     },
     initForm(q){
-      //  console.log("init",q)
+        console.log("init",q)
       if (q.title != undefined || q.text != undefined || q.url != undefined){
         let n = {title: q.title || "",
         text: q.text || "",
         url: q.url || "",
-        tags: q.tags || ""}
+        }
+        this.tags = q.tags != undefined ? JSON.parse(q.tags) : ""
         this.cardActive = true
-        if(n.url == undefined && n.text.startsWith('http')){
+        if(n.url.length == 0 && n.text.startsWith('http')){
           n.url = n.text
           n.text = ""
+          this.text_placeholder = "Ajoutez une description"
         }
         this.note = n
-        //console.log("note init",this.note)
+        console.log("note init",this.note)
         this.topic == undefined ? this.topic = "default" : ""
       }
     },
