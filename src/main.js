@@ -20,6 +20,8 @@ Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
 
+import { Network } from "vue-vis-network";
+Vue.component('network', Network);
 
 Vue.config.productionTip = false
 

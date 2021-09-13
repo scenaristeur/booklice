@@ -21,8 +21,12 @@
     "core-js": "^3.16.3",
     "register-service-worker": "^1.7.1",
     "underscore": "^1.13.1",
+    "vis": "^4.21.0-EOL",
+    "vis-network": "^9.1.0",
+    "vis-util": "^5.0.2",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
+    "vue-vis-network": "^1.0.2",
     "vuex": "^3.4.0"
   },
   "devDependencies": {

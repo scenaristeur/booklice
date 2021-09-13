@@ -12,6 +12,7 @@
       ></b-form-checkbox-group>
     </b-form-group>
     <Filters />
+    <VisNetwork :bms="bms" :options="options" />
     <b-card-group columns>
       <Note v-for="bm in bms" :key="bm" :bm="bm"  :options="options" />
     </b-card-group>
@@ -24,6 +25,7 @@ export default {
   components: {
     'Note': () => import('@/components/note/Note'),
     'Filters': () => import('@/components/note/Filters'),
+    'VisNetwork': () => import('@/components/network/VisNetwork'),
   },
   data(){
     return{

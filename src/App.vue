@@ -8,7 +8,7 @@
     </div>
 
 <!--router.push({ path: 'register', query: { plan: 'private' }})-->
-    <b-button variant="outline-success" to="?source=https://booklice.solidweb.org/public/bookmarks/">Community's bookmarks</b-button>
+    if you don't know what to do here, see <b-button variant="outline-success" to="?source=https://booklice.solidweb.org/public/bookmarks/">Community's bookmarks</b-button>
 
     <router-view/>
 
